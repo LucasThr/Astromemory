@@ -1,9 +1,10 @@
 import { Text, View } from "react-native";
+import { ScreenLayout } from "../layouts/screen.layout";
 
 export const Home = () => {
   return (
-    <View>
+    <ScreenLayout>
       <Text>Hello World!</Text>
-    </View>
+    </ScreenLayout>
   );
 };
