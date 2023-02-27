@@ -8,7 +8,7 @@ export const PlanetsSlide = ({ planets }: { planets: any }) => {
         Planets Slide
       </Text>
 
-      <ScrollView horizontal={true}>
+      <ScrollView horizontal={true} pagingEnabled={true}>
         {planets.map((planet: any) => (
           <PlanetCard key={planet.id} />
         ))}

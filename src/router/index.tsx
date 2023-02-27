@@ -11,13 +11,13 @@ export const Router = () => {
       <Stack.Navigator>
         <Stack.Screen
           options={{ headerShown: false }}
-          name="Planets"
-          component={Planets}
+          name="Home"
+          component={Home}
         />
         <Stack.Screen
           options={{ headerShown: false }}
-          name="Home"
-          component={Home}
+          name="Planets"
+          component={Planets}
         />
       </Stack.Navigator>
     </NavigationContainer>
