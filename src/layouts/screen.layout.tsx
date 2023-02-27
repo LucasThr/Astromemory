@@ -1,7 +1,25 @@
 import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useDimensions } from "../hooks/useDimensions";
 
-export const ScreenLayout = ({ children }: any) => {
+export const ScreenLayout = ({
+  children,
+  noPadding,
+}: {
+  children: JSX.Element | JSX.Element[];
+  noPadding?: boolean;
+}) => {
   const inset = useSafeAreaInsets();
-  return <View style={{ flex: 1, paddingTop: inset.top }}>{children}</View>;
+  const { width } = useDimensions();
+  return (
+    <View
+      style={{
+        flex: 1,
+        paddingTop: inset.top,
+        paddingHorizontal: noPadding ? 0 : width(8),
+      }}
+    >
+      {children}
+    </View>
+  );
 };

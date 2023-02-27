@@ -1,13 +1,47 @@
-import { View, Text, Image } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  Animated,
+  Dimensions,
+  Pressable,
+} from "react-native";
 import React from "react";
 import { useDimensions } from "../../../../hooks/useDimensions";
+import { useNavigation } from "@react-navigation/native";
 
-type Props = {};
+type Props = {
+  index: number;
+  xOffset: Animated.Value;
+};
 
 const PlanetCard = (props: Props) => {
   const { width, height } = useDimensions();
+  const navigation = useNavigation();
+
+  function rotateTransform(index: number) {
+    return {
+      transform: [
+        {
+          rotate: props.xOffset.interpolate({
+            inputRange: [
+              (index - 1) * width,
+              index * width,
+              (index + 1) * width,
+            ],
+            outputRange: ["30deg", "0deg", "-30deg"],
+          }),
+        },
+      ],
+    };
+  }
   return (
-    <View style={{ paddingTop: 50, alignItems: "center", width: width(100) }}>
+    <Animated.View
+      style={[
+        { paddingTop: 50, alignItems: "center", width: width(100) },
+        rotateTransform(props.index),
+      ]}
+    >
       <Image
         style={{
           top: 0,
@@ -18,7 +52,9 @@ const PlanetCard = (props: Props) => {
         }}
         source={require("../../../../assets/img/earth.png")}
       />
-      <View
+
+      <Pressable
+        onPress={() => navigation.navigate("PlanetPage")}
         style={{
           backgroundColor: "white",
           borderRadius: 12,
@@ -42,8 +78,8 @@ const PlanetCard = (props: Props) => {
             perferendis nam!
           </Text>
         </View>
-      </View>
-    </View>
+      </Pressable>
+    </Animated.View>
   );
 };
 

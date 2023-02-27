@@ -10,7 +10,6 @@ import { useNavigation } from "@react-navigation/native";
 
 export const Home = () => {
   const navigation = useNavigation();
-
   return (
     <ScreenLayout>
       <View style={styles.container}>
