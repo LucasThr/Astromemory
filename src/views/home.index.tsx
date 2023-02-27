@@ -1,8 +1,9 @@
 import { ImageBackground, Text, View, StyleSheet } from "react-native";
+import { ScreenLayout } from "../layouts/screen.layout";
 
 export const Home = () => {
   return (
-    <>
+    <ScreenLayout>
       <View style={styles.container}>
         <Text style={styles.title}>Bonjour Diroshow</Text>
 
@@ -29,8 +30,8 @@ export const Home = () => {
           </View>
         </View>
       </View>
-    </>
-  );
+      </ScreenLayout>
+  )
 };
 
 const styles = StyleSheet.create({
