@@ -1,16 +1,28 @@
-import { ImageBackground, Text, View, StyleSheet } from "react-native";
+import {
+  ImageBackground,
+  Pressable,
+  Text,
+  View,
+  StyleSheet,
+} from "react-native";
 import { ScreenLayout } from "../layouts/screen.layout";
+import { useNavigation } from "@react-navigation/native";
 
 export const Home = () => {
+  const navigation = useNavigation();
+
   return (
     <ScreenLayout>
       <View style={styles.container}>
         <Text style={styles.title}>Bonjour Diroshow</Text>
 
         <View key="menu" style={styles.grid}>
-          <View style={[styles.content, styles.wfull]}>
+          <Pressable
+            onPress={() => navigation.navigate("Planets")}
+            style={[styles.content, styles.wfull]}
+          >
             <Text style={styles.textcenter}>Cours</Text>
-          </View>
+          </Pressable>
           <View style={styles.flexbox}>
             <View style={[styles.content, styles.w50]}>
               <ImageBackground
@@ -30,8 +42,8 @@ export const Home = () => {
           </View>
         </View>
       </View>
-      </ScreenLayout>
-  )
+    </ScreenLayout>
+  );
 };
 
 const styles = StyleSheet.create({
