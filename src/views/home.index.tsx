@@ -17,23 +17,23 @@ export const Home = () => {
             title="Cours"
             image={astronaut}
             link="Planets"
-            padding={mainstyles.pl8}
+            textStyle={{ paddingLeft: 32 }}
           />
 
           <View style={styles.flexbox}>
             <ItemsMenu
               title="Solo"
-              image={training}
+              image={astronaut}
               link="Planets"
-              style={mainstyles.wmid}
-              align={mainstyles.textcenter}
+              viewStyle={{ width: "50%" }}
+              textStyle={{ textAlign: "center" }}
             />
             <ItemsMenu
               title="Multijoueur"
               image={training}
               link="Planets"
-              style={mainstyles.wmid}
-              align={mainstyles.textcenter}
+              viewStyle={{ width: "50%" }}
+              textStyle={{ textAlign: "center" }}
             />
           </View>
 
@@ -41,7 +41,7 @@ export const Home = () => {
             title="Entrainement"
             image={training}
             link="Planets"
-            padding={mainstyles.pl8}
+            textStyle={{ paddingLeft: 32 }}
           />
         </View>
       </View>

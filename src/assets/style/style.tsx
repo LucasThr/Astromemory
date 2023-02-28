@@ -5,8 +5,11 @@ export const mainstyles = StyleSheet.create({
     padding: 20,
     gap: 24,
   },
-  wmid: {
-    width: "50%",
+  titleView: {
+    textTransform: "uppercase",
+    fontWeight: "bold",
+    fontSize: 24,
+    textAlign: "center"
   },
   wfull: {
     width: "100%",
@@ -16,8 +19,5 @@ export const mainstyles = StyleSheet.create({
   },
   textcenter: {
     textAlign: "center",
-  },
-  pl8: {
-    paddingLeft: 32,
   },
 });
