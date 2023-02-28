@@ -1,6 +1,8 @@
 import { View, Text, StyleSheet, KeyboardAvoidingView } from "react-native";
 import { mainstyles } from "../../../assets/style/style";
 import { Video } from "expo-av";
+import { useRef } from "react";
+import { useDimensions } from "../../../hooks/useDimensions";
 
 export const Game = ({
   name,
@@ -11,20 +13,22 @@ export const Game = ({
   description?: string;
   video?: string;
 }) => {
+  const videoRef = useRef(null);
+  const { height, width } = useDimensions();
   return (
     <View>
       <View>
-        {/* <Video
+        <Video
+          ref={videoRef}
+          style={{ height: height(50), width: width(80) }}
           source={{
-            uri: "https://s3-eu-west-1.amazonaws.com/video.gallereplay.com/artistarea/Lighthouse%20stands%20in%20Istanbul%E2%80%99s%20harbour_0554659b-5dc1-43d6-8a93-b31ec6b67f63/Cinemagraph_plain/1920x1080/cinemagraph.mp4",
+            uri: "https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
           }}
-          rate={1}
-          shouldPlay={true}
-          isLooping={true}
-          volume={1}
-          muted={true}
-          resizeMode="cover"
-        /> */}
+          useNativeControls={false}
+          resizeMode="contain"
+          isLooping
+          // onPlaybackStatusUpdate={status => setStatus(() => status)}
+        />
       </View>
       <View style={{ alignItems: "center" }}>
         <Text style={style.titleGame}>{name}</Text>
