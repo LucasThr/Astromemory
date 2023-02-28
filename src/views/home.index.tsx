@@ -1,44 +1,48 @@
-import {
-  ImageBackground,
-  Pressable,
-  Text,
-  View,
-  StyleSheet,
-} from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 import { ScreenLayout } from "../layouts/screen.layout";
-import { useNavigation } from "@react-navigation/native";
+import { mainstyles } from "../assets/style/style";
+import { ItemsMenu } from "../components/ItemsMenu";
 
 export const Home = () => {
-  const navigation = useNavigation();
+  const astronaut = require("../assets/img/astronaut.jpg");
+  const training = require("../assets/img/training.png");
+
   return (
     <ScreenLayout>
-      <View style={styles.container}>
+      <View style={mainstyles.container}>
         <Text style={styles.title}>Bonjour Diroshow</Text>
 
         <View key="menu" style={styles.grid}>
-          <Pressable
-            onPress={() => navigation.navigate("Planets")}
-            style={[styles.content, styles.wfull]}
-          >
-            <Text style={styles.textcenter}>Cours</Text>
-          </Pressable>
+          <ItemsMenu
+            title="Cours"
+            image={astronaut}
+            link="Planets"
+            textStyle={{ paddingLeft: 32 }}
+          />
+
           <View style={styles.flexbox}>
-            <View style={[styles.content, styles.w50]}>
-              <ImageBackground
-                style={styles.wfull}
-                source={require("../assets/img/astronaut.jpg")}
-                resizeMode="cover"
-              >
-                <Text style={styles.textcenter}>Solo</Text>
-              </ImageBackground>
-            </View>
-            <View style={[styles.content, styles.w50]}>
-              <Text>MultiJoueur</Text>
-            </View>
+            <ItemsMenu
+              title="Solo"
+              image={astronaut}
+              link="Planets"
+              viewStyle={{ width: "50%" }}
+              textStyle={{ textAlign: "center" }}
+            />
+            <ItemsMenu
+              title="Multijoueur"
+              image={training}
+              link="Planets"
+              viewStyle={{ width: "50%" }}
+              textStyle={{ textAlign: "center" }}
+            />
           </View>
-          <View style={[styles.content, styles.wfull]}>
-            <Text>Entrainement</Text>
-          </View>
+
+          <ItemsMenu
+            title="Entrainement"
+            image={training}
+            link="Planets"
+            textStyle={{ paddingLeft: 32 }}
+          />
         </View>
       </View>
     </ScreenLayout>
@@ -46,45 +50,15 @@ export const Home = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    gap: 24,
-  },
   grid: {
     gap: 32,
-  },
-  textcenter: {
-    textAlign: "center",
   },
   title: {
     fontWeight: "bold",
     fontSize: 25,
   },
-  content: {
-    borderWidth: 1,
-    borderColor: "white",
-    borderRadius: 10,
-    padding: 20,
-    height: 130,
-    alignItems: "center",
-    justifyContent: "flex-end",
-  },
-  w50: {
-    width: "45%",
-  },
-  wfull: {
-    width: "100%",
-  },
-  hfull: {
-    height: "100%",
-  },
   flexbox: {
     flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  text: {
-    fontSize: 25,
-    fontWeight: "bold",
+    gap: 32,
   },
 });
