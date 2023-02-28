@@ -5,11 +5,10 @@ export const mainstyles = StyleSheet.create({
     padding: 20,
     gap: 24,
   },
-  titleView: {
-    textTransform: "uppercase",
+  title: {
     fontWeight: "bold",
     fontSize: 24,
-    textAlign: "center"
+    marginBottom: 24
   },
   wfull: {
     width: "100%",
