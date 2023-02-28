@@ -1,7 +1,7 @@
 import { Text, View, StyleSheet } from "react-native";
 import { ScreenLayout } from "../layouts/screen.layout";
-import { mainstyles } from "../assets/style/style";
 import { ItemsMenu } from "../components/ItemsMenu";
+import { mainstyles } from "../assets/style/style";
 
 export const Home = () => {
   const astronaut = require("../assets/img/astronaut.jpg");

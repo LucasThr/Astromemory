@@ -16,7 +16,7 @@ export const ScreenLayout = ({
       style={{
         flex: 1,
         paddingTop: inset.top,
-        paddingHorizontal: noPadding ? 0 : width(8),
+        paddingHorizontal: noPadding ? 0 : width(6),
       }}
     >
       {children}

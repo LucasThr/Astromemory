@@ -23,10 +23,13 @@ export const Router = () => {
         />
         <Stack.Screen
           options={{ headerShown: false }}
-          name="PlanetPage"
-          component={PlanetPage}
           name="Training"
           component={Training}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="PlanetPage"
+          component={PlanetPage}
         />
       </Stack.Navigator>
     </NavigationContainer>

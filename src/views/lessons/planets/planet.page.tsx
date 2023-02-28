@@ -2,10 +2,12 @@ import { View, Text, Image, ScrollView } from "react-native";
 import React from "react";
 import { ScreenLayout } from "../../../layouts/screen.layout";
 import PlanetImages from "./components/images.planet";
+import { useDimensions } from "../../../hooks/useDimensions";
 
 type Props = {};
 
 const PlanetPage = (props: Props) => {
+  const { width, height } = useDimensions();
   return (
     <ScreenLayout>
       <Image
@@ -36,25 +38,31 @@ const PlanetPage = (props: Props) => {
           left: 0,
         }}
       />
-      <View style={{ flex: 1, justifyContent: "flex-end" }}>
-        <View style={{ marginBottom: 30 }}>
-          <Text
-            style={{
-              fontSize: 35,
-              fontWeight: "900",
-              marginLeft: 4,
-              marginBottom: 10,
-            }}
-          >
-            Earth
-          </Text>
-          <Text style={{ fontSize: 16 }}>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore non
-            magnam minus at et facilis possimus exercitationem sunt dignissimos
-            blanditiis.
-          </Text>
-        </View>
-        <PlanetImages />
+      <View style={{ flex: 1, backgroundColor: "blue" }}>
+        <ScrollView>
+          <View style={{ height: height(100), justifyContent: "flex-end" }}>
+            <View style={{ marginBottom: 30, backgroundColor: "purple" }}>
+              <Text
+                style={{
+                  fontSize: 35,
+                  fontWeight: "900",
+                  marginLeft: 4,
+                  marginBottom: 10,
+                }}
+              >
+                Earth
+              </Text>
+              <Text style={{ fontSize: 16 }}>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore
+                non magnam minus at et facilis possimus exercitationem sunt
+                dignissimos blanditiis.
+              </Text>
+            </View>
+            <View style={{ height: 400, width: 300 }} />
+            <PlanetImages />
+          </View>
+          <View style={{ height: 400, width: 300 }} />
+        </ScrollView>
       </View>
     </ScreenLayout>
   );
