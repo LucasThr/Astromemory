@@ -2,44 +2,67 @@ import {
   View,
   Text,
   Image,
-  Animated,
   Dimensions,
   Pressable,
+  StyleSheet,
 } from "react-native";
 import React from "react";
 import { useDimensions } from "../../../../hooks/useDimensions";
 import { useNavigation } from "@react-navigation/native";
+import Animated, {
+  Extrapolate,
+  interpolate,
+  useAnimatedStyle,
+} from "react-native-reanimated";
 
 type Props = {
+  translateX: Animated.SharedValue<number>;
   index: number;
-  xOffset: Animated.Value;
 };
 
-const PlanetCard = (props: Props) => {
-  const { width, height } = useDimensions();
+const PlanetCard = ({ translateX, index }: Props) => {
   const navigation = useNavigation();
+  const { width, height } = useDimensions();
 
-  function rotateTransform(index: number) {
+  const inputRange = [
+    (-index - 1) * width(80),
+    index * width(80),
+    (index + 1) * width(80),
+  ];
+
+  const rStyle = useAnimatedStyle(() => {
+    const scale = interpolate(
+      translateX.value,
+      inputRange,
+      [0, 1, 0],
+      Extrapolate.CLAMP
+    );
+
+    const translate = interpolate(translateX.value, inputRange, [300, 0, 300]);
+
+    console.log("borrad", translate);
     return {
       transform: [
         {
-          rotate: props.xOffset.interpolate({
-            inputRange: [
-              (index - 1) * width,
-              index * width,
-              (index + 1) * width,
-            ],
-            outputRange: ["30deg", "0deg", "-30deg"],
-          }),
+          scale,
+        },
+        {
+          translateX: translate,
         },
       ],
     };
-  }
+  });
+
   return (
     <Animated.View
       style={[
-        { paddingTop: 50, alignItems: "center", width: width(100) },
-        rotateTransform(props.index),
+        {
+          paddingTop: 50,
+          alignItems: "center",
+          width: width(100),
+          // marginLeft: width(10),
+        },
+        // rStyle,
       ]}
     >
       <Image

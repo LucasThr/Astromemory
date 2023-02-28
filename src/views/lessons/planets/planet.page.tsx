@@ -1,4 +1,4 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, ScrollView } from "react-native";
 import React from "react";
 import { ScreenLayout } from "../../../layouts/screen.layout";
 import PlanetImages from "./components/images.planet";

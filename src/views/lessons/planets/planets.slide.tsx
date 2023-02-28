@@ -1,10 +1,18 @@
-import { Animated, ScrollView, Text, View } from "react-native";
+import { ScrollView, Text, Platform, View } from "react-native";
 import PlanetCard from "./components/planet.card";
 import { useDimensions } from "../../../hooks/useDimensions";
+import Animated, {
+  useAnimatedScrollHandler,
+  useSharedValue,
+} from "react-native-reanimated";
 
 export const PlanetsSlide = ({ planets }: { planets: any }) => {
-  const xOffset = new Animated.Value(0);
-
+  const translateX = useSharedValue(0);
+  const { width } = useDimensions();
+  const scrollHandler = useAnimatedScrollHandler((event) => {
+    translateX.value = event.contentOffset.x;
+  });
+  const SPACING_FOR_CARD_INSET = width(80) * 0.1 - 10;
   return (
     <View>
       <Text style={{ alignSelf: "center", fontSize: 30, marginVertical: 30 }}>
@@ -12,16 +20,31 @@ export const PlanetsSlide = ({ planets }: { planets: any }) => {
       </Text>
 
       <Animated.ScrollView
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { x: xOffset } } }],
-          { useNativeDriver: true }
-        )}
+        onScroll={scrollHandler}
         scrollEventThrottle={16}
         horizontal={true}
         pagingEnabled={true}
+        // snapToInterval={width(80) + 10} // Calculate the size for a card including marginLeft and marginRight
+        // snapToAlignment="center" // Snap to the center
+        // contentInset={{
+        //   // iOS ONLY
+        //   top: 0,
+        //   left: SPACING_FOR_CARD_INSET, // Left spacing for the very first card
+        //   bottom: 0,
+        //   right: SPACING_FOR_CARD_INSET, // Right spacing for the very last card
+        // }}
+        // contentContainerStyle={{
+        //   // contentInset alternative for Android
+        //   paddingHorizontal:
+        //     Platform.OS === "android" ? SPACING_FOR_CARD_INSET : 0, // Horizontal spacing before and after the ScrollView
+        // }}
       >
         {planets.map((planet: number[], index: number) => (
-          <PlanetCard key={index} xOffset={xOffset} index={index} />
+          <PlanetCard
+            translateX={translateX}
+            key={index.toString()}
+            index={index}
+          />
         ))}
       </Animated.ScrollView>
     </View>
