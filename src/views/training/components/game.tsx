@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, KeyboardAvoidingView } from "react-native";
 import { mainstyles } from "../../../assets/style/style";
-import { Video } from "expo";
+import { Video } from "expo-av";
 
 export const Game = ({
   name,
@@ -12,7 +12,7 @@ export const Game = ({
   video?: string;
 }) => {
   return (
-    <View style={mainstyles.container}>
+    <View>
       <View>
         {/* <Video
           source={{

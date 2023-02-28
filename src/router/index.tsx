@@ -4,6 +4,7 @@ import { Home } from "../views/home.index";
 import Planets from "../views/lessons/planets/planets.index";
 import PlanetPage from "../views/lessons/planets/planet.page";
 import { Training } from "../views/training/training.index";
+import { Multiplayers } from "../views/multiplayers/multiplayers.index";
 
 export const Router = () => {
   const Stack = createNativeStackNavigator();
@@ -20,6 +21,11 @@ export const Router = () => {
           options={{ headerShown: false }}
           name="Planets"
           component={Planets}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Multiplayers"
+          component={Multiplayers}
         />
         <Stack.Screen
           options={{ headerShown: false }}

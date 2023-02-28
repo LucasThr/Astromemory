@@ -1,7 +1,6 @@
 import { Text, View, StyleSheet } from "react-native";
 import { ScreenLayout } from "../layouts/screen.layout";
 import { ItemsMenu } from "../components/ItemsMenu";
-import { mainstyles } from "../assets/style/style";
 
 export const Home = () => {
   const astronaut = require("../assets/img/astronaut.jpg");
@@ -9,41 +8,39 @@ export const Home = () => {
 
   return (
     <ScreenLayout>
-      <View style={mainstyles.container}>
-        <Text style={styles.title}>Bonjour Diroshow</Text>
+      <Text style={styles.title}>Bonjour Diroshow</Text>
 
-        <View key="menu" style={styles.grid}>
+      <View key="menu" style={styles.grid}>
+        <ItemsMenu
+          title="Cours"
+          image={astronaut}
+          link="Planets"
+          textStyle={{ paddingLeft: 32 }}
+        />
+
+        <View style={styles.flexbox}>
           <ItemsMenu
-            title="Cours"
+            title="Solo"
             image={astronaut}
             link="Planets"
-            textStyle={{ paddingLeft: 32 }}
+            viewStyle={{ width: "50%" }}
+            textStyle={{ textAlign: "center" }}
           />
-
-          <View style={styles.flexbox}>
-            <ItemsMenu
-              title="Solo"
-              image={astronaut}
-              link="Planets"
-              viewStyle={{ width: "50%" }}
-              textStyle={{ textAlign: "center" }}
-            />
-            <ItemsMenu
-              title="Multijoueur"
-              image={training}
-              link="Planets"
-              viewStyle={{ width: "50%" }}
-              textStyle={{ textAlign: "center" }}
-            />
-          </View>
-
           <ItemsMenu
-            title="Entrainement"
+            title="Multijoueur"
             image={training}
-            link="Planets"
-            textStyle={{ paddingLeft: 32 }}
+            link="Multiplayers"
+            viewStyle={{ width: "50%" }}
+            textStyle={{ textAlign: "center" }}
           />
         </View>
+
+        <ItemsMenu
+          title="Entrainement"
+          image={training}
+          link="Training"
+          textStyle={{ paddingLeft: 32 }}
+        />
       </View>
     </ScreenLayout>
   );
@@ -55,7 +52,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: "bold",
-    fontSize: 25,
+    fontSize: 24,
+    marginBottom: 24
   },
   flexbox: {
     flexDirection: "row",

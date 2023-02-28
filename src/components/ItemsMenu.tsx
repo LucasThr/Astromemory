@@ -1,4 +1,4 @@
-import { ImageBackground, Pressable, Text, StyleSheet } from "react-native";
+import { ImageBackground, Pressable, Text, StyleSheet, StyleProp, TextStyle, ViewStyle } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { mainstyles } from "../assets/style/style";
 import { LinearGradient } from "expo-linear-gradient";
@@ -13,8 +13,8 @@ export const ItemsMenu = ({
   title: string;
   image: string;
   link: string;
-  viewStyle?: string;
-  textStyle?: string;
+  viewStyle?: StyleProp<ViewStyle>;
+  textStyle?: StyleProp<TextStyle>;
 }) => {
   const navigation = useNavigation();
 
@@ -28,7 +28,7 @@ export const ItemsMenu = ({
           colors={["transparent", "rgba(0,0,0,0.8)"]}
           // start = {{x: 0, y: 1}}
           // end = {{x: 1, y: 1}}
-          style={[mainstyles.wfull, { paddingVertical: 16 }]}
+          style={[{width: "100%"}, { paddingVertical: 16 }]}
         >
           <Text style={[styles.text, textStyle]}>{title}</Text>
         </LinearGradient>
