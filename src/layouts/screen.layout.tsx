@@ -17,6 +17,7 @@ export const ScreenLayout = ({
         flex: 1,
         paddingTop: inset.top,
         paddingHorizontal: noPadding ? 0 : width(6),
+        position: "relative",
       }}
     >
       {children}

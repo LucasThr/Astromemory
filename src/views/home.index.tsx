@@ -40,7 +40,7 @@ export const Home = () => {
           <ItemsMenu
             title="Entrainement"
             image={training}
-            link="Planets"
+            link="Training"
             textStyle={{ paddingLeft: 32 }}
           />
         </View>

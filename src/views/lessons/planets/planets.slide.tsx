@@ -5,6 +5,7 @@ import Animated, {
   useAnimatedScrollHandler,
   useSharedValue,
 } from "react-native-reanimated";
+import HeaderTitle from "../../../components/header.title";
 
 export const PlanetsSlide = ({ planets }: { planets: any }) => {
   const translateX = useSharedValue(0);
@@ -15,9 +16,7 @@ export const PlanetsSlide = ({ planets }: { planets: any }) => {
   const SPACING_FOR_CARD_INSET = width(80) * 0.1 - 10;
   return (
     <View>
-      <Text style={{ alignSelf: "center", fontSize: 30, marginVertical: 30 }}>
-        Planets Slide
-      </Text>
+      <HeaderTitle title={"Les Planetes"} />
 
       <Animated.ScrollView
         onScroll={scrollHandler}
