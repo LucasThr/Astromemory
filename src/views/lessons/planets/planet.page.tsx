@@ -4,14 +4,84 @@ import { ScreenLayout } from "../../../layouts/screen.layout";
 import PlanetImages from "./components/images.planet";
 import { useDimensions } from "../../../hooks/useDimensions";
 import HeaderLesson from "../../../components/header.lesson";
+import Animated, {
+  Extrapolate,
+  interpolate,
+  useAnimatedScrollHandler,
+  useAnimatedStyle,
+  useSharedValue,
+} from "react-native-reanimated";
+import DataPlanet from "./components/data.planet";
+import DistancePlanet from "./components/distance.planet";
 
 type Props = {};
 
 const PlanetPage = (props: Props) => {
   const { width, height } = useDimensions();
+  const translationY = useSharedValue(0);
+  const MAX_WIDTH = width(100);
+  const MAX_HEIGHT = height(100);
+
+  const cubeStyle = useAnimatedStyle(() => {
+    const widthAnimated = interpolate(
+      translationY.value,
+      [0, 200],
+      [120, MAX_WIDTH],
+      Extrapolate.CLAMP
+    );
+    const heightAnimated = interpolate(
+      translationY.value,
+      [0, 600],
+      [120, MAX_HEIGHT / 2.2],
+      Extrapolate.CLAMP
+    );
+    return {
+      transform: [
+        {
+          translateY: translationY.value / 4,
+        },
+      ],
+      width: widthAnimated,
+      height: heightAnimated * 2,
+    };
+  });
+
+  const titleStyle = useAnimatedStyle(() => {
+    const translateXAnimated = interpolate(
+      translationY.value,
+      [0, 200],
+      [-160, 0],
+      Extrapolate.CLAMP
+    );
+    const translateYAnimated = interpolate(
+      translationY.value,
+      [100, 600],
+      [-120, 0],
+      Extrapolate.CLAMP
+    );
+    return {
+      transform: [
+        {
+          translateY: translateYAnimated,
+        },
+        {
+          translateX: translateXAnimated,
+        },
+      ],
+    };
+  });
+
+  const scrollHandler = useAnimatedScrollHandler((event) => {
+    translationY.value = event.contentOffset.y;
+  });
+
   return (
     <ScreenLayout noPadding>
-      <ScrollView style={{ flex: 1 }}>
+      <Animated.ScrollView
+        onScroll={scrollHandler}
+        scrollEventThrottle={16}
+        style={{ flex: 1 }}
+      >
         <HeaderLesson />
         <Image
           style={{ position: "absolute" }}
@@ -30,16 +100,19 @@ const PlanetPage = (props: Props) => {
         >
           3
         </Text>
-        <View
-          style={{
-            position: "absolute",
-            height: 120,
-            width: 120,
-            backgroundColor: "green",
-            borderRadius: 10,
-            top: height(85),
-            left: 0,
-          }}
+        <Animated.View
+          style={[
+            {
+              position: "absolute",
+              height: 120,
+              width: 120,
+              backgroundColor: "#0E1034",
+              borderRadius: 10,
+              top: height(85),
+              left: 0,
+            },
+            cubeStyle,
+          ]}
         />
         <View
           style={{
@@ -66,8 +139,45 @@ const PlanetPage = (props: Props) => {
           </View>
           <PlanetImages />
         </View>
+        <View style={{ height: 200, width: 300 }} />
+        <View>
+          <Animated.Text
+            style={[
+              {
+                fontSize: 40,
+                marginTop: -60,
+                marginBottom: 30,
+                textAlign: "center",
+                fontWeight: "900",
+                color: "white",
+              },
+              titleStyle,
+            ]}
+          >
+            Données
+          </Animated.Text>
+          <DataPlanet
+            title={"Average Orbital Speed"}
+            data={"24 007 km/h"}
+            iconName="speedometer"
+          />
+          <DataPlanet title={"Satellites"} data={2} iconName="aperture" />
+          <DataPlanet
+            title={"Surfaces Area"}
+            data={"144 798 500 km2"}
+            iconName="map"
+          />
+          <DataPlanet
+            title={"Rotation Period"}
+            data={"1.058725525625 d"}
+            iconName="disc"
+          />
+
+          <DistancePlanet translationY={translationY} />
+        </View>
         <View style={{ height: 400, width: 300 }} />
-      </ScrollView>
+        <View style={{ height: 400, width: 300 }} />
+      </Animated.ScrollView>
     </ScreenLayout>
   );
 };

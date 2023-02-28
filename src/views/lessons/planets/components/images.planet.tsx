@@ -12,7 +12,6 @@ const PlanetImages = (props: Props) => {
         style={{
           height: 8,
           width: 35,
-          backgroundColor: "purple",
           borderRadius: 20,
           marginBottom: 10,
           alignSelf: "center",
@@ -22,7 +21,7 @@ const PlanetImages = (props: Props) => {
         style={{
           width: width(90),
           height: height(20),
-          backgroundColor: "purple",
+          backgroundColor: "green",
           borderRadius: 22,
           alignSelf: "center",
           flexDirection: "row",

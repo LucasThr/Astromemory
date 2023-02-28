@@ -18,9 +18,10 @@ import Animated, {
 type Props = {
   translateX: Animated.SharedValue<number>;
   index: number;
+  maxIndex: number;
 };
 
-const PlanetCard = ({ translateX, index }: Props) => {
+const PlanetCard = ({ translateX, index, maxIndex }: Props) => {
   const navigation = useNavigation();
   const { width, height } = useDimensions();
 
@@ -34,22 +35,27 @@ const PlanetCard = ({ translateX, index }: Props) => {
     const scale = interpolate(
       translateX.value,
       inputRange,
-      [0, 1, 0],
+      [0.8, 1.2, 0.8],
       Extrapolate.CLAMP
     );
 
     const translate = interpolate(translateX.value, inputRange, [300, 0, 300]);
 
-    console.log("borrad", translate);
+    // console.log("borrad", translate);
     return {
-      transform: [
-        {
-          scale,
-        },
-        {
-          translateX: translate,
-        },
-      ],
+      // transform: [
+      //   {
+      //     scale,
+      //   },
+      //   {
+      //     translateX: translate,
+      //   },
+      // ],
+      // transform: [
+      //   {
+      //     scale,
+      //   },
+      // ],
     };
   });
 
@@ -57,12 +63,14 @@ const PlanetCard = ({ translateX, index }: Props) => {
     <Animated.View
       style={[
         {
+          alignSelf: "center",
           paddingTop: 50,
           alignItems: "center",
-          width: width(100),
-          // marginLeft: width(10),
+          width: width(80),
+          marginLeft: index === 0 ? width(10) : 0,
+          marginRight: index === maxIndex ? width(10) : 0,
         },
-        // rStyle,
+        rStyle,
       ]}
     >
       <Image
