@@ -3,12 +3,12 @@ import React from "react";
 
 type Props = {};
 
-const Constellations = (props: Props) => {
+const ConstellationPage = (props: Props) => {
   return (
     <View>
-      <Text>Constellations</Text>
+      <Text>ConstellationPage</Text>
     </View>
   );
 };
 
-export default Constellations;
+export default ConstellationPage;
