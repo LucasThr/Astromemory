@@ -8,7 +8,6 @@ export const mainstyles = StyleSheet.create({
   title: {
     fontWeight: "bold",
     fontSize: 24,
-    marginBottom: 24
   },
   wfull: {
     width: "100%",
