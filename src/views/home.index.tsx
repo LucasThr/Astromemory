@@ -3,6 +3,7 @@ import { ScreenLayout } from "../layouts/screen.layout";
 import { ItemsMenu } from "../components/ItemsMenu";
 import { mainstyles } from "../assets/style/style";
 import { useDimensions } from "../hooks/useDimensions";
+import { Infos } from "../components/infos";
 
 export const Home = () => {
   const astronaut = require("../assets/img/astronaut.jpg");
@@ -50,6 +51,8 @@ export const Home = () => {
           textStyle={{ paddingLeft: 32 }}
         />
       </View>
+
+      <Infos />
     </ScreenLayout>
   );
 };

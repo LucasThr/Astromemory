@@ -10,6 +10,7 @@ import ConstellationPage from "../views/lessons/constellations/constellation.pag
 import { Planets } from "../views/lessons/planets/planets.index";
 import { Join } from "../views/multiplayers/join/join.index";
 import { Wait } from "../views/multiplayers/join/wait.index";
+import { Create } from "../views/multiplayers/create/create.index";
 
 export const Router = () => {
   const Stack = createNativeStackNavigator();
@@ -61,6 +62,11 @@ export const Router = () => {
           options={{ headerShown: false }}
           name="Wait"
           component={Wait}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Create"
+          component={Create}
         />
         <Stack.Screen
           options={{ headerShown: false }}

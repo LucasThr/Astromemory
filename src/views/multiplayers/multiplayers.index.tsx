@@ -13,7 +13,7 @@ export const Multiplayers = () => {
         <ItemsMenu
           title="Création de parties"
           image={astronaut}
-          link="Planets"
+          link="Create"
           textStyle={{ alignItems: "center" }}
         />
         <ItemsMenu

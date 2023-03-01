@@ -14,4 +14,5 @@ export const images = {
   pluto: require("./pluto.png"),
   multi: require("./multi.jpg"),
   training: require("./training.png"),
+  star: require("./star.png"),
 };
