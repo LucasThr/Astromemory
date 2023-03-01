@@ -18,6 +18,7 @@ export const ScreenLayout = ({
         paddingTop: inset.top,
         paddingHorizontal: noPadding ? 0 : width(6),
         position: "relative",
+        justifyContent: "center"
       }}
     >
       {children}
