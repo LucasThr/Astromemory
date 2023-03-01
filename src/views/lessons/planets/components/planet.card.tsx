@@ -15,6 +15,7 @@ import Animated, {
   useAnimatedStyle,
 } from "react-native-reanimated";
 import Icon from "../../../../components/icon";
+import MainText from "../../../../components/text.index";
 
 type Props = { planet: Object };
 
@@ -43,6 +44,7 @@ const PlanetCard = ({ planet, index }: Props) => {
           width: width(30),
           height: width(30),
         }}
+        resizeMode="contain"
         source={planet.image}
       />
 
@@ -60,9 +62,11 @@ const PlanetCard = ({ planet, index }: Props) => {
             alignSelf: index % 2 === 0 ? "center" : "flex-start",
           }}
         >
-          <Text style={{ marginBottom: 10, fontWeight: "800", fontSize: 30 }}>
+          <MainText
+           style={{ marginBottom: 10, fontWeight: "800", fontSize: 30 }}>
             {planet.name}
-          </Text>
+          </MainText
+          >
           <Pressable
             onPress={() => navigation.navigate("PlanetPage")}
             hitSlop={15}

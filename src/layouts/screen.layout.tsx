@@ -1,25 +1,31 @@
-import { ScrollView, View } from "react-native";
+import { ScrollView, StyleProp, View, ViewStyle } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useDimensions } from "../hooks/useDimensions";
 
 export const ScreenLayout = ({
   children,
   noPadding,
+  style,
 }: {
   children: JSX.Element | JSX.Element[];
   noPadding?: boolean;
+  style?: StyleProp<ViewStyle>;
 }) => {
   const inset = useSafeAreaInsets();
   const { width } = useDimensions();
   return (
     <View
-      style={{
-        flex: 1,
-        paddingTop: inset.top,
-        paddingHorizontal: noPadding ? 0 : width(6),
-        position: "relative",
-        justifyContent: "center"
-      }}
+      style={[
+        {
+          flex: 1,
+          paddingTop: inset.top,
+          paddingHorizontal: noPadding ? 0 : width(6),
+          position: "relative",
+          justifyContent: "center",
+        },
+
+        style,
+      ]}
     >
       {children}
     </View>

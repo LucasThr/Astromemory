@@ -1,4 +1,10 @@
-import { ScrollView, Text, Platform, View } from "react-native";
+import {
+  ScrollView,
+  Text,
+  Platform,
+  View,
+  ImageBackground,
+} from "react-native";
 import PlanetCard from "./components/planet.card";
 import { useDimensions } from "../../../hooks/useDimensions";
 import Animated, {
@@ -8,6 +14,7 @@ import Animated, {
 import HeaderTitle from "../../../components/header.title";
 import { ScreenLayout } from "../../../layouts/screen.layout";
 import { images } from "../../../assets/img";
+import { LinearGradient } from "expo-linear-gradient";
 
 export const Planets = () => {
   const translateX = useSharedValue(0);
@@ -73,24 +80,30 @@ export const Planets = () => {
   ];
 
   return (
-    <ScreenLayout noPadding>
-      <HeaderTitle title={"Les Planetes"} />
-      <View
-        style={{
-          flex: 1,
-        }}
-      >
-        <Animated.ScrollView
-          onScroll={scrollHandler}
-          scrollEventThrottle={16}
-          pagingEnabled={true}
-          snapToAlignment="center" // Snap to the center
+    <ScreenLayout style={{ backgroundColor: "black" }} noPadding>
+      <LinearGradient style={{ flex: 1 }} colors={["#1061BF", "#3D027C"]}>
+        <HeaderTitle title={"Les Planetes"} />
+        <View
+          style={{
+            flex: 1,
+          }}
         >
-          {planets.map((planet: number[], index: number) => (
-            <PlanetCard key={index.toString()} index={index} planet={planet} />
-          ))}
-        </Animated.ScrollView>
-      </View>
+          <Animated.ScrollView
+            onScroll={scrollHandler}
+            scrollEventThrottle={16}
+            pagingEnabled={true}
+            snapToAlignment="center" // Snap to the center
+          >
+            {planets.map((planet: number[], index: number) => (
+              <PlanetCard
+                key={index.toString()}
+                index={index}
+                planet={planet}
+              />
+            ))}
+          </Animated.ScrollView>
+        </View>
+      </LinearGradient>
     </ScreenLayout>
   );
 };
