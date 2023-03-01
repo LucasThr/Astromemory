@@ -1,6 +1,7 @@
 import { Text, View, StyleSheet } from "react-native";
 import { ScreenLayout } from "../layouts/screen.layout";
 import { ItemsMenu } from "../components/ItemsMenu";
+import { mainstyles } from "../assets/style/style";
 
 export const Home = () => {
   const astronaut = require("../assets/img/astronaut.jpg");
@@ -8,7 +9,7 @@ export const Home = () => {
 
   return (
     <ScreenLayout>
-      <Text style={styles.title}>Bonjour Diroshow</Text>
+      <Text style={mainstyles.title}>Bonjour Diroshow</Text>
 
       <View key="menu" style={styles.grid}>
         <ItemsMenu
@@ -49,11 +50,6 @@ export const Home = () => {
 const styles = StyleSheet.create({
   grid: {
     gap: 32,
-  },
-  title: {
-    fontWeight: "bold",
-    fontSize: 24,
-    marginBottom: 24
   },
   flexbox: {
     flexDirection: "row",

@@ -1,38 +1,51 @@
-import { View, Text, StyleSheet, KeyboardAvoidingView } from "react-native";
+import { View, Text, Pressable, StyleSheet } from "react-native";
 import { mainstyles } from "../../../assets/style/style";
 import { Video } from "expo-av";
 import { useRef } from "react";
 import { useDimensions } from "../../../hooks/useDimensions";
 
 export const Game = ({
+  index,
+  maxIndex,
   name,
   description,
   video,
 }: {
+  index: number,
+  maxIndex: number,
   name?: string;
   description?: string;
   video?: string;
 }) => {
   const videoRef = useRef(null);
   const { height, width } = useDimensions();
+
   return (
-    <View>
-      <View>
+    <View style={{ flexDirection: "column", width: width(80),  
+    marginLeft: index === 0 ? width(10) : 0,
+          marginRight: index === maxIndex ? width(10) : 0}}>
+      <View style={{ alignItems: "center", marginBottom: 38 }}>
         <Video
           ref={videoRef}
-          style={{ height: height(50), width: width(80) }}
+          style={{ height: 226, width: 226 }}
           source={{
-            uri: "https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
+            uri: video,
           }}
           useNativeControls={false}
-          resizeMode="contain"
+          resizeMode="cover"
           isLooping
+          shouldPlay
           // onPlaybackStatusUpdate={status => setStatus(() => status)}
         />
       </View>
       <View style={{ alignItems: "center" }}>
         <Text style={style.titleGame}>{name}</Text>
         <Text style={style.infosGame}>{description}</Text>
+      </View>
+      <View>
+        <Pressable>
+          <Text>START</Text>
+        </Pressable>
       </View>
     </View>
   );
