@@ -11,7 +11,7 @@ export const Home = () => {
 
   return (
     <ScreenLayout>
-      <Text style={mainstyles.title}>Bonjour Diroshow</Text>
+      <Text style={[mainstyles.title, {marginBottom: 24}]}>Bonjour Diroshow</Text>
 
       <View key="menu" style={{ gap: 32 }}>
         <ItemsMenu

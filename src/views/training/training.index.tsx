@@ -6,9 +6,9 @@ import { mainstyles } from "../../assets/style/style";
 export const Training = () => {
   const games = [1, 2, 3, 4];
   return (
-    <ScreenLayout>
+    <ScreenLayout noPadding>
       <View>
-        <Text style={[mainstyles.title, mainstyles.textcenter]}>
+        <Text style={[mainstyles.title, mainstyles.textcenter, {marginBottom: 40}]}>
           Entrainement
         </Text>
       </View>
@@ -24,6 +24,8 @@ export const Training = () => {
               name="Space Stars"
               description="Relie les étoiles correspondantes le plus rapidement possible"
               video="https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4"
+              index={index}
+              maxIndex={games.length-1}
             />
           ))}
         </ScrollView>

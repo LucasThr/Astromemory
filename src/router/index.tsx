@@ -8,6 +8,8 @@ import Lessons from "../views/lessons/lessons.index";
 import Constellations from "../views/lessons/constellations/constellations.index";
 import ConstellationPage from "../views/lessons/constellations/constellation.page";
 import { Planets } from "../views/lessons/planets/planets.index";
+import { Join } from "../views/multiplayers/join/join.index";
+import { Wait } from "../views/multiplayers/join/wait.index";
 
 export const Router = () => {
   const Stack = createNativeStackNavigator();
@@ -49,6 +51,16 @@ export const Router = () => {
           options={{ headerShown: false }}
           name="Multiplayers"
           component={Multiplayers}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Join"
+          component={Join}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Wait"
+          component={Wait}
         />
         <Stack.Screen
           options={{ headerShown: false }}
