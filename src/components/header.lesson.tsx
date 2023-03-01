@@ -7,7 +7,6 @@ import { useNavigation } from "@react-navigation/native";
 type Props = {};
 
 const HeaderLesson = (props: Props) => {
-  const inset = useSafeAreaInsets();
   const navigation = useNavigation();
 
   return (

@@ -9,7 +9,6 @@ type Props = {
 };
 
 const HeaderTitle = ({ title }: Props) => {
-  const inset = useSafeAreaInsets();
   const navigation = useNavigation();
 
   return (

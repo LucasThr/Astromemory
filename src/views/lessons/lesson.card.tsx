@@ -7,7 +7,7 @@ import {
   StyleSheet,
 } from "react-native";
 import React from "react";
-import { useDimensions } from "../../../../hooks/useDimensions";
+import { useDimensions } from "../../hooks/useDimensions";
 import { useNavigation } from "@react-navigation/native";
 import Animated, {
   Extrapolate,
@@ -16,13 +16,49 @@ import Animated, {
 } from "react-native-reanimated";
 
 type Props = {
+  translateX: Animated.SharedValue<number>;
   index: number;
   maxIndex: number;
+  lesson: Object;
 };
 
-const PlanetCard = ({ index }: Props) => {
+const LessonCard = ({ translateX, index, maxIndex, lesson }: Props) => {
   const navigation = useNavigation();
   const { width, height } = useDimensions();
+
+  const inputRange = [
+    (-index - 1) * width(80),
+    index * width(80),
+    (index + 1) * width(80),
+  ];
+
+  const rStyle = useAnimatedStyle(() => {
+    const scale = interpolate(
+      translateX.value,
+      inputRange,
+      [0.8, 1.2, 0.8],
+      Extrapolate.CLAMP
+    );
+
+    const translate = interpolate(translateX.value, inputRange, [300, 0, 300]);
+
+    // console.log("borrad", translate);
+    return {
+      // transform: [
+      //   {
+      //     scale,
+      //   },
+      //   {
+      //     translateX: translate,
+      //   },
+      // ],
+      // transform: [
+      //   {
+      //     scale,
+      //   },
+      // ],
+    };
+  });
 
   return (
     <Animated.View
@@ -31,9 +67,11 @@ const PlanetCard = ({ index }: Props) => {
           alignSelf: "center",
           paddingTop: 50,
           alignItems: "center",
-          width: width(90),
-          height: height(40),
+          width: width(80),
+          marginLeft: index === 0 ? width(10) : 0,
+          marginRight: index === maxIndex ? width(10) : 0,
         },
+        rStyle,
       ]}
     >
       <Image
@@ -44,11 +82,11 @@ const PlanetCard = ({ index }: Props) => {
           width: 200,
           height: 200,
         }}
-        source={require("../../../../assets/img/earth.png")}
+        source={require("../../assets/img/earth.png")}
       />
 
       <Pressable
-        onPress={() => navigation.navigate("PlanetPage")}
+        onPress={() => navigation.navigate(lesson.link)}
         style={{
           backgroundColor: "white",
           borderRadius: 12,
@@ -63,7 +101,7 @@ const PlanetCard = ({ index }: Props) => {
       >
         <View>
           <Text style={{ marginBottom: 10, fontWeight: "800", fontSize: 20 }}>
-            Earth
+            {lesson.name}
           </Text>
           <Text>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo neque
@@ -77,4 +115,4 @@ const PlanetCard = ({ index }: Props) => {
   );
 };
 
-export default PlanetCard;
+export default LessonCard;

@@ -35,10 +35,17 @@ const PlanetPage = (props: Props) => {
       [120, MAX_HEIGHT / 2.2],
       Extrapolate.CLAMP
     );
+
+    const translateYAnimated = interpolate(
+      translationY.value,
+      [200, 600],
+      [0, MAX_HEIGHT / 4],
+      Extrapolate.CLAMP
+    );
     return {
       transform: [
         {
-          translateY: translationY.value / 4,
+          translateY: translateYAnimated,
         },
       ],
       width: widthAnimated,

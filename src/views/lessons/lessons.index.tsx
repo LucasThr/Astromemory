@@ -1,21 +1,35 @@
-import { ScrollView, Text, Platform, View } from "react-native";
-import PlanetCard from "./components/planet.card";
-import { useDimensions } from "../../../hooks/useDimensions";
+import { View, Text } from "react-native";
+import React from "react";
+import { ScreenLayout } from "../../layouts/screen.layout";
 import Animated, {
   useAnimatedScrollHandler,
   useSharedValue,
 } from "react-native-reanimated";
-import HeaderTitle from "../../../components/header.title";
+import { useDimensions } from "../../hooks/useDimensions";
+import HeaderTitle from "../../components/header.title";
+import LessonCard from "./lesson.card";
 
-export const PlanetsSlide = ({ planets }: { planets: any }) => {
+type Props = {};
+
+const Lessons = (props: Props) => {
   const translateX = useSharedValue(0);
   const { width } = useDimensions();
   const scrollHandler = useAnimatedScrollHandler((event) => {
     translateX.value = event.contentOffset.x;
   });
+
+  const lessons = [
+    { id: 1, name: "Planetes", image: "", link: "Planets" },
+    { id: 2, name: "Constellations", image: "", link: "Constellations" },
+    { id: 3, name: "Etoiles", image: "", link: "" },
+    { id: 4, name: "Galaxies", image: "", link: "" },
+    { id: 5, name: "Satellites", image: "", link: "" },
+    { id: 6, name: "Univers", image: "", link: "" },
+  ];
+
   return (
-    <View style={{ flex: 1 }}>
-      <HeaderTitle title={"Les Planetes"} />
+    <ScreenLayout noPadding>
+      <HeaderTitle title={"Cours"} />
       <View
         style={{
           flex: 1,
@@ -42,16 +56,19 @@ export const PlanetsSlide = ({ planets }: { planets: any }) => {
           //     Platform.OS === "android" ? SPACING_FOR_CARD_INSET : 0, // Horizontal spacing before and after the ScrollView
           // }}
         >
-          {planets.map((planet: number[], index: number) => (
-            <PlanetCard
+          {lessons.map((lesson: number[], index: number) => (
+            <LessonCard
+              lesson={lesson}
               translateX={translateX}
               key={index.toString()}
               index={index}
-              maxIndex={planets.length - 1}
+              maxIndex={lessons.length - 1}
             />
           ))}
         </Animated.ScrollView>
       </View>
-    </View>
+    </ScreenLayout>
   );
 };
+
+export default Lessons;
