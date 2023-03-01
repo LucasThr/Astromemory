@@ -20,6 +20,7 @@ export const Training = () => {
         >
           {games.map((game, index) => (
             <Game
+              key={index.toString()}
               name="Space Stars"
               description="Relie les étoiles correspondantes le plus rapidement possible"
               video="https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4"

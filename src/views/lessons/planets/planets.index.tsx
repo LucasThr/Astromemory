@@ -7,6 +7,7 @@ import Animated, {
 } from "react-native-reanimated";
 import HeaderTitle from "../../../components/header.title";
 import { ScreenLayout } from "../../../layouts/screen.layout";
+import { images } from "../../../assets/img";
 
 export const Planets = () => {
   const translateX = useSharedValue(0);
@@ -15,7 +16,61 @@ export const Planets = () => {
     translateX.value = event.contentOffset.x;
   });
 
-  const planets = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+  const planets = [
+    {
+      id: 1,
+      name: "Terre",
+      image: images.earth,
+    },
+    {
+      id: 2,
+      name: "Mercure",
+      image: images.mercury,
+    },
+    {
+      id: 3,
+
+      name: "Venus",
+      image: images.venus,
+    },
+    {
+      id: 4,
+
+      name: "Mars",
+      image: images.mars,
+    },
+
+    {
+      id: 5,
+
+      name: "Jupiter",
+      image: images.jupiter,
+    },
+    {
+      id: 6,
+
+      name: "Saturne",
+      image: images.saturn,
+    },
+    {
+      id: 7,
+
+      name: "Uranus",
+      image: images.uranus,
+    },
+    {
+      id: 8,
+
+      name: "Neptune",
+      image: images.neptune,
+    },
+    {
+      id: 9,
+
+      name: "Pluton",
+      image: images.pluto,
+    },
+  ];
 
   return (
     <ScreenLayout noPadding>
@@ -23,23 +78,16 @@ export const Planets = () => {
       <View
         style={{
           flex: 1,
-          paddingBottom: width(30),
         }}
       >
         <Animated.ScrollView
           onScroll={scrollHandler}
           scrollEventThrottle={16}
-          horizontal={true}
           pagingEnabled={true}
           snapToAlignment="center" // Snap to the center
         >
           {planets.map((planet: number[], index: number) => (
-            <PlanetCard
-              translateX={translateX}
-              key={index.toString()}
-              index={index}
-              maxIndex={planets.length - 1}
-            />
+            <PlanetCard key={index.toString()} index={index} planet={planet} />
           ))}
         </Animated.ScrollView>
       </View>

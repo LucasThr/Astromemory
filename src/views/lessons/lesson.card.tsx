@@ -79,8 +79,8 @@ const LessonCard = ({ translateX, index, maxIndex, lesson }: Props) => {
           top: 0,
           zIndex: 50,
           position: "absolute",
-          width: 200,
-          height: 200,
+          width: 150,
+          height: 150,
         }}
         source={require("../../assets/img/earth.png")}
       />

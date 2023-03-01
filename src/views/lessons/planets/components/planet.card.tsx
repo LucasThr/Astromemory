@@ -14,13 +14,11 @@ import Animated, {
   interpolate,
   useAnimatedStyle,
 } from "react-native-reanimated";
+import Icon from "../../../../components/icon";
 
-type Props = {
-  index: number;
-  maxIndex: number;
-};
+type Props = { planet: Object };
 
-const PlanetCard = ({ index }: Props) => {
+const PlanetCard = ({ planet, index }: Props) => {
   const navigation = useNavigation();
   const { width, height } = useDimensions();
 
@@ -28,49 +26,68 @@ const PlanetCard = ({ index }: Props) => {
     <Animated.View
       style={[
         {
-          alignSelf: "center",
-          paddingTop: 50,
+          alignSelf: index % 2 === 0 ? "flex-start" : "flex-end",
           alignItems: "center",
+          justifyContent: "space-between",
           width: width(90),
-          height: height(40),
+          marginVertical: 20,
+          flexDirection: index % 2 === 0 ? "row" : "row-reverse",
         },
       ]}
     >
       <Image
         style={{
-          top: 0,
           zIndex: 50,
-          position: "absolute",
-          width: 200,
-          height: 200,
+          marginLeft: index % 2 === 0 ? width(5) : 0,
+          marginRight: index % 2 === 0 ? 0 : width(5),
+          width: width(30),
+          height: width(30),
         }}
-        source={require("../../../../assets/img/earth.png")}
+        source={planet.image}
       />
 
       <Pressable
-        onPress={() => navigation.navigate("PlanetPage")}
         style={{
-          backgroundColor: "white",
-          borderRadius: 12,
-          width: width(70),
-          height: height(50),
-          marginHorizontal: 10,
-          paddingHorizontal: 20,
+          marginVertical: 20,
           justifyContent: "center",
-          alignItems: "center",
-          zIndex: -10,
+          height: "auto",
+          width: width(60),
         }}
       >
-        <View>
-          <Text style={{ marginBottom: 10, fontWeight: "800", fontSize: 20 }}>
-            Earth
+        <View
+          style={{
+            width: width(50),
+            alignSelf: index % 2 === 0 ? "center" : "flex-start",
+          }}
+        >
+          <Text style={{ marginBottom: 10, fontWeight: "800", fontSize: 30 }}>
+            {planet.name}
           </Text>
-          <Text>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo neque
-            itaque minima odit qui accusantium fugit ipsa, ratione animi commodi
-            voluptas quidem eveniet, dolorem amet nesciunt nisi doloremque
-            perferendis nam!
-          </Text>
+          <Pressable
+            onPress={() => navigation.navigate("PlanetPage")}
+            hitSlop={15}
+            style={({ pressed }) => [
+              {
+                opacity: pressed ? 0.5 : 1,
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+                paddingVertical: 6,
+                paddingHorizontal: 14,
+                alignSelf: "flex-start",
+                borderRadius: 12,
+                backgroundColor: "black",
+              },
+            ]}
+          >
+            <Text style={{ color: "white", fontSize: 14 }}>Continuer</Text>
+            <Icon
+              style={{ marginLeft: 6 }}
+              name="chevron-forward"
+              color="white"
+              size={20}
+            />
+          </Pressable>
         </View>
       </Pressable>
     </Animated.View>
