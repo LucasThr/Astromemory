@@ -1,5 +1,6 @@
 export const images = {
   astronaut: require("./astronaut.jpg"),
+  background_space: require("./background_space.jpg"),
   background_planet: require("./background_planet.png"),
   earth: require("./earth.png"),
   jupiter: require("./jupiter.png"),
