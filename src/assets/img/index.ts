@@ -16,4 +16,5 @@ export const images = {
   multi: require("./multi.jpg"),
   training: require("./training.png"),
   star: require("./star.png"),
+  logo: require("./logo.png"),
 };

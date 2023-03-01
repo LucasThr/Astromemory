@@ -11,7 +11,7 @@ import Animated, {
   useAnimatedScrollHandler,
   useSharedValue,
 } from "react-native-reanimated";
-import HeaderTitle from "../../../components/header.title";
+import { Header } from "../../../components/header";
 import { ScreenLayout } from "../../../layouts/screen.layout";
 import { images } from "../../../assets/img";
 import { LinearGradient } from "expo-linear-gradient";
@@ -82,7 +82,7 @@ export const Planets = () => {
   return (
     <ScreenLayout style={{ backgroundColor: "black" }} noPadding>
       <LinearGradient style={{ flex: 1 }} colors={["#1061BF", "#3D027C"]}>
-        <HeaderTitle title={"Les Planetes"} />
+        <Header/>
         <View
           style={{
             flex: 1,

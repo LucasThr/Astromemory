@@ -1,23 +1,16 @@
 import { Image, Text, View } from "react-native";
-import { mainstyles } from "../../../assets/style/style";
 import { images } from "../../../assets/img";
+import { Players } from "../data/player";
 
 export const List = () => {
-  const players = [
-    "Thirion7",
-    "LgcCode",
-    "Squeezie",
-    "Mastu",
-    "Joyca",
-    "KevinTran",
-    "Raska",
-  ];
 
   return (
     <>
       <View
         style={{
           backgroundColor: "#D9D9D9",
+          borderColor: "black",
+          borderWidth: 1,
           borderRadius: 10,
           //   alignItems: "center",
           paddingVertical: 24,
@@ -53,7 +46,7 @@ export const List = () => {
           </Text>
         </View>
         <View style={{ gap: 10 }}>
-          {players.map((player) => (
+          {Players.map((player) => (
             <Text
               style={{
                 fontSize: 18,
