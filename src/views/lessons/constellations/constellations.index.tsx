@@ -1,13 +1,21 @@
-import { View, Text } from "react-native";
+import { View, Text, Pressable } from "react-native";
 import React from "react";
+import { useDimensions } from "../../../hooks/useDimensions";
+import { ScreenLayout } from "../../../layouts/screen.layout";
+import { useNavigation } from "@react-navigation/native";
 
 type Props = {};
 
 const Constellations = (props: Props) => {
+  const { width, height } = useDimensions();
+  const navigation = useNavigation();
   return (
-    <View>
+    <ScreenLayout>
       <Text>Constellations</Text>
-    </View>
+      <Pressable onPress={() => navigation.navigate("ConstellationPage")}>
+        <Text>Pressable</Text>
+      </Pressable>
+    </ScreenLayout>
   );
 };
 
