@@ -6,7 +6,7 @@ import Animated, {
   useSharedValue,
 } from "react-native-reanimated";
 import { useDimensions } from "../../hooks/useDimensions";
-import HeaderTitle from "../../components/header.title";
+import { Header } from "../../components/header";
 import LessonCard from "./lesson.card";
 
 type Props = {};
@@ -29,7 +29,7 @@ const Lessons = (props: Props) => {
 
   return (
     <ScreenLayout noPadding>
-      <HeaderTitle title={"Cours"} />
+      <Header />
       <View
         style={{
           flex: 1,

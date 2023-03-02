@@ -27,4 +27,6 @@ export const images = {
   scorpio: require("./scorpio.png"),
   taurus: require("./taurus.png"),
   virgo: require("./virgo.png"),
+    star: require("./star.png"),
+  logo: require("./logo.png"),
 };
