@@ -7,7 +7,6 @@ import { useNavigation } from "@react-navigation/native";
 type Props = {};
 
 const Constellations = (props: Props) => {
-  const { width, height } = useDimensions();
   const navigation = useNavigation();
   return (
     <ScreenLayout>
