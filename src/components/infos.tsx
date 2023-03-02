@@ -16,7 +16,7 @@ export const Infos = () => {
     >
       <Icon name="information-circle" size={28} color={"black"} />
 
-      <Text style={{ fontSize: 12, fontWeight: "500" }}>
+      <Text style={{ fontSize: 12, fontWeight: "500", flexShrink: 1 }}>
         Savez vous que l’intensité de la lumière du soleil augmente chaque mois
         ?
       </Text>
