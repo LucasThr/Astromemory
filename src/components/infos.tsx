@@ -11,7 +11,7 @@ export const Infos = () => {
         paddingVertical: 12,
         backgroundColor: "#D9D9D9",
         borderRadius: 10,
-        marginBottom: 40
+        marginBottom: 40,
       }}
     >
       <Icon name="information-circle" size={28} color={"black"} />
