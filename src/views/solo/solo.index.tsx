@@ -5,7 +5,7 @@ import { mainstyles } from "../../assets/style/style";
 import { Header } from "../../components/header";
 import { Infos } from "../../components/infos";
 
-export const Training = () => {
+export const Solo = () => {
   const games = [1, 2, 3, 4];
 
   return (
@@ -21,7 +21,7 @@ export const Training = () => {
               { marginBottom: 40 },
             ]}
           >
-            Entrainement
+            Solo
           </Text>
         </View>
         <View>

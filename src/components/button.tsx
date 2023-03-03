@@ -8,8 +8,8 @@ export const Button = ({ name, link }: { name: string; link?: string }) => {
     <Pressable
       style={{
         marginTop: 46,
-        borderRadius: 100,
-        backgroundColor: "#D9D9D9"
+        borderRadius: 10,
+        backgroundColor: "#1A4379"
       }}
       onPress={() => navigation.navigate(link)}
     >
@@ -20,6 +20,7 @@ export const Button = ({ name, link }: { name: string; link?: string }) => {
           fontSize: 20,
           fontWeight: "bold",
           paddingVertical: 24,
+          color: "white"
         }}
       >
         {name}

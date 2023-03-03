@@ -22,6 +22,7 @@ export const ScreenLayout = ({
           paddingHorizontal: noPadding ? 0 : width(6),
           position: "relative",
           justifyContent: "center",
+          backgroundColor: "black"
         },
 
         style,

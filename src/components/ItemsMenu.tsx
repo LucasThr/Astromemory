@@ -7,7 +7,6 @@ import {
   ViewStyle,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { mainstyles } from "../assets/style/style";
 import { LinearGradient } from "expo-linear-gradient";
 
 export const ItemsMenu = ({
@@ -15,12 +14,14 @@ export const ItemsMenu = ({
   image,
   link,
   viewStyle,
+  imageStyle,
   textStyle,
 }: {
   title: string;
   image: string;
   link: string;
   viewStyle?: StyleProp<ViewStyle>;
+  imageStyle?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
 }) => {
   const navigation = useNavigation();
@@ -31,7 +32,7 @@ export const ItemsMenu = ({
       style={[
         {
           borderWidth: 1,
-          borderColor: "white",
+          borderColor: "#818585",
           borderRadius: 10,
           height: 130,
           justifyContent: "flex-end",
@@ -40,37 +41,34 @@ export const ItemsMenu = ({
       ]}
     >
       <ImageBackground
-        style={{
-          width: "100%",
-          height: "100%",
-          borderRadius: 12,
-          overflow: "hidden",
-          justifyContent: "flex-end",
-          alignItems: "flex-start",
-        }}
+        style={[
+          {
+            width: "100%",
+            height: "100%",
+            borderRadius: 12,
+            overflow: "hidden",
+            justifyContent: "flex-end",
+            alignItems: "flex-start",
+          },
+          imageStyle,
+        ]}
         source={image}
         resizeMode="cover"
       >
-        <LinearGradient
-          colors={["transparent", "rgba(0,0,0,0.8)"]}
-          // start = {{x: 0, y: 1}}
-          // end = {{x: 1, y: 1}}
-          style={[{ width: "100%" }, { paddingVertical: 16 }]}
+        <Text
+          style={[
+            {
+              fontSize: 20,
+              fontWeight: "bold",
+              color: "white",
+              width: "100%",
+              paddingBottom: 16,
+            },
+            textStyle,
+          ]}
         >
-          <Text
-            style={[
-              {
-                fontSize: 20,
-                fontWeight: "bold",
-                color: "white",
-                width: "100%",
-              },
-              textStyle,
-            ]}
-          >
-            {title}
-          </Text>
-        </LinearGradient>
+          {title}
+        </Text>
       </ImageBackground>
     </Pressable>
   );

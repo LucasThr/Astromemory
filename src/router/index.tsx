@@ -2,7 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Home } from "../views/home.index";
 import PlanetPage from "../views/lessons/planets/planet.page";
-import { Training } from "../views/training/training.index";
+import { Solo } from "../views/solo/solo.index";
 import { Multiplayers } from "../views/multiplayers/multiplayers.index";
 import Lessons from "../views/lessons/lessons.index";
 import Constellations from "../views/lessons/constellations/constellations.index";
@@ -76,8 +76,8 @@ export const Router = () => {
         />
         <Stack.Screen
           options={{ headerShown: false }}
-          name="Training"
-          component={Training}
+          name="Solo"
+          component={Solo}
         />
       </Stack.Navigator>
     </NavigationContainer>

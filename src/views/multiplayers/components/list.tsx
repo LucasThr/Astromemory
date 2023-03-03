@@ -8,8 +8,8 @@ export const List = () => {
     <>
       <View
         style={{
-          backgroundColor: "#D9D9D9",
-          borderColor: "black",
+          backgroundColor: "#303747",
+          borderColor: "#818585",
           borderWidth: 1,
           borderRadius: 10,
           //   alignItems: "center",
@@ -23,6 +23,7 @@ export const List = () => {
             fontWeight: "bold",
             textAlign: "center",
             marginBottom: 24,
+            color: "white"
           }}
         >
           Liste des joueurs
@@ -40,6 +41,7 @@ export const List = () => {
             style={{
               fontSize: 18,
               fontWeight: "bold",
+              color: "white"
             }}
           >
             Diroshow
@@ -51,6 +53,7 @@ export const List = () => {
               style={{
                 fontSize: 18,
                 fontWeight: "bold",
+                color: "white"
               }}
             >
               {player}

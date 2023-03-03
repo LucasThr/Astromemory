@@ -10,7 +10,7 @@ export const Wait = () => {
     <ScreenLayout>
       <Header />
       <View style={{ flex: 1, justifyContent: "center" }}>
-        <Text style={[mainstyles.title, mainstyles.textcenter]}>
+        <Text style={[mainstyles.title, mainstyles.textcenter, {fontWeight: "400"}]}>
           Salle d'attente :
         </Text>
         <Text
@@ -26,7 +26,7 @@ export const Wait = () => {
         <Text
           style={[
             mainstyles.textcenter,
-            { fontSize: 18, fontWeight: "500", marginTop: 46 },
+            { fontSize: 18, fontWeight: "500", marginTop: 46, color: "white" },
           ]}
         >
           Lancement en attente de l’hôte de la partie
