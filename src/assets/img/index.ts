@@ -33,4 +33,6 @@ export const images = {
   virgo: require("./virgo.png"),
   star: require("./star.png"),
   logo: require("./logo.png"),
+  moon_background: require("./moon_background.png"),
+  satellite: require("./satellite.png"),
 };
