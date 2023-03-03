@@ -1,11 +1,4 @@
-import {
-  View,
-  Text,
-  Image,
-  Dimensions,
-  Pressable,
-  StyleSheet,
-} from "react-native";
+import { View, Image, Dimensions, Pressable, StyleSheet } from "react-native";
 import React from "react";
 import { useDimensions } from "../../../../hooks/useDimensions";
 import { useNavigation } from "@react-navigation/native";
@@ -15,7 +8,8 @@ import Animated, {
   useAnimatedStyle,
 } from "react-native-reanimated";
 import Icon from "../../../../components/icon";
-import MainText from "../../../../components/text.index";
+import MainText from "../../../../components/text";
+import Text from "../../../../components/text";
 
 type Props = { planet: Object };
 
@@ -62,11 +56,9 @@ const PlanetCard = ({ planet, index }: Props) => {
             alignSelf: index % 2 === 0 ? "center" : "flex-start",
           }}
         >
-          <MainText
-           style={{ marginBottom: 10, fontWeight: "800", fontSize: 30 }}>
+          <Text style={{ marginBottom: 10, fontWeight: "800", fontSize: 30 }}>
             {planet.name}
-          </MainText
-          >
+          </Text>
           <Pressable
             onPress={() => navigation.navigate("PlanetPage")}
             hitSlop={15}
