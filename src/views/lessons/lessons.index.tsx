@@ -8,6 +8,7 @@ import Animated, {
 import { useDimensions } from "../../hooks/useDimensions";
 import { Header } from "../../components/header";
 import LessonCard from "./lesson.card";
+import { Infos } from "../../components/infos";
 
 type Props = {};
 
@@ -20,20 +21,22 @@ const Lessons = (props: Props) => {
 
   const lessons = [
     { id: 1, name: "Planetes", image: "", link: "Planets" },
-    { id: 2, name: "Constellations", image: "", link: "Constellations" },
-    { id: 3, name: "Etoiles", image: "", link: "" },
-    { id: 4, name: "Galaxies", image: "", link: "" },
-    { id: 5, name: "Satellites", image: "", link: "" },
-    { id: 6, name: "Univers", image: "", link: "" },
+    // { id: 2, name: "Constellations", image: "", link: "Constellations" },
+    // { id: 3, name: "Etoiles", image: "", link: "" },
+    // { id: 4, name: "Galaxies", image: "", link: "" },
+    // { id: 5, name: "Satellites", image: "", link: "" },
+    // { id: 6, name: "Univers", image: "", link: "" },
   ];
 
   return (
-    <ScreenLayout noPadding>
+    <ScreenLayout>
       <Header />
+
       <View
         style={{
           flex: 1,
-          paddingBottom: width(30),
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
         <Animated.ScrollView
@@ -67,6 +70,7 @@ const Lessons = (props: Props) => {
           ))}
         </Animated.ScrollView>
       </View>
+      <Infos />
     </ScreenLayout>
   );
 };

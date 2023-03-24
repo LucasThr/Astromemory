@@ -9,17 +9,17 @@ export const Solo = () => {
   const games = [1, 2, 3, 4];
 
   return (
-    <ScreenLayout noPadding>
+    <ScreenLayout>
       <Header />
 
       <View style={{ flex: 1, justifyContent: "center" }}>
         <View>
           <Text
-            style={[
-              mainstyles.title,
-              mainstyles.textcenter,
-              { marginBottom: 40 },
-            ]}
+            // style={[
+            //   mainstyles.title,
+            //   mainstyles.textcenter,
+            //   { marginBottom: 40 },
+            // ]}
           >
             Solo
           </Text>

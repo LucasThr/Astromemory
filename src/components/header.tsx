@@ -31,7 +31,7 @@ export const Header = () => {
         <Icon name="chevron-back" size={28} color={"black"} />
       </Pressable>
       <View>
-        <Image style={{ width: 40, height: 40 }} source={images.logo} />
+        <Image style={{ width: 40, height: 40 }} source={images.logo_image} />
       </View>
     </View>
   );

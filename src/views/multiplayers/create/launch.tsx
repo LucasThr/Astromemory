@@ -3,7 +3,6 @@ import { ScreenLayout } from "../../../layouts/screen.layout";
 import { mainstyles } from "../../../assets/style/style";
 import { List } from "../components/list";
 import { Header } from "../../../components/header";
-import { Infos } from "../../../components/infos";
 import { Button } from "../../../components/button";
 
 export const Launch = () => {
@@ -11,7 +10,7 @@ export const Launch = () => {
     <ScreenLayout>
       <Header />
       <View style={{ flex: 1, justifyContent: "center" }}>
-        <Text style={[mainstyles.title, mainstyles.textcenter]}>Session :</Text>
+        <Text style={[mainstyles.title, mainstyles.textcenter, {fontWeight: "400"}]}>Session :</Text>
         <Text
           style={[
             mainstyles.title,
@@ -24,7 +23,6 @@ export const Launch = () => {
         <List />
         <Button name="Start" />
       </View>
-      <Infos />
     </ScreenLayout>
   );
 };

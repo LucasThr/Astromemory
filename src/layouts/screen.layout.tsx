@@ -37,8 +37,8 @@ export const ScreenLayout = ({
       {
         scale: withRepeat(
           withSequence(
-            withTiming(1.05, { duration: 1500 }),
-            withTiming(1.4, { duration: 1500 })
+            withTiming(5, { duration: 1250 }),
+            withTiming(1, { duration: 1000 })
           ),
           -1,
           true

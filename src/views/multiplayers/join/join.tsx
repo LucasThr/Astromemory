@@ -4,13 +4,24 @@ import { mainstyles } from "../../../assets/style/style";
 import { Button } from "../../../components/button";
 import { Input } from "../components/input";
 import { Header } from "../../../components/header";
-import { Infos } from "../../../components/infos";
+import { useState } from "react";
+import { userService } from "../../../services/user.service";
+import { useNavigation } from "@react-navigation/native";
 
 export const Join = () => {
+  const navigation = useNavigation();
+
+  const [name, setName] = useState<string>("");
+
+  const joinRoom = async () => {
+    let user = await userService.create(name);
+    navigation.navigate("Wait")
+  };
+
   return (
     <ScreenLayout>
       <Header />
-      <View style={{ flex: 1, justifyContent: "center"}}>
+      <View style={{ flex: 1, justifyContent: "center" }}>
         <Text
           style={[
             mainstyles.title,
@@ -21,12 +32,16 @@ export const Join = () => {
           Rejoindre un salon
         </Text>
         <View style={{ gap: 32 }}>
-          <Input title="Pseudo" value="Mastu" />
-          <Input title="Code de la session" value="123456" />
+          <Input
+            title="Pseudo"
+            placeholder="Mastu"
+            onChange={setName}
+            value={name}
+          />
+          <Input title="Code de la session" placeholder="123456" />
         </View>
-        <Button name="Valider" link="Wait" />
+        <Button name="Valider" link="Wait" onPress={joinRoom} />
       </View>
-      <Infos />
     </ScreenLayout>
   );
 };

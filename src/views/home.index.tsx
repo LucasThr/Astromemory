@@ -11,8 +11,8 @@ export const Home = () => {
 
   return (
     <ScreenLayout>
-      <View style={{ alignItems: "center", marginTop: 40, marginBottom: 24 }}>
-        <Image style={{ width: 100, height: 100 }} source={images.logo} />
+      <View style={{ alignItems: "center", marginTop: 40, marginBottom: 60 }}>
+        <Image style={{ width: 190, height: 130 }} source={images.logo} />
       </View>
       <View style={{ flex: 1 }}>
         <Text style={[mainstyles.title, { marginBottom: 24 }]}>Bienvenue</Text>

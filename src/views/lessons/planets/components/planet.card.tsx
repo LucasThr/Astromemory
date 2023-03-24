@@ -56,9 +56,10 @@ const PlanetCard = ({ planet, index }: Props) => {
             alignSelf: index % 2 === 0 ? "center" : "flex-start",
           }}
         >
-          <Text style={{ marginBottom: 10, fontWeight: "800", fontSize: 30 }}>
+          <Text style={{ marginBottom: 10, fontWeight: "800", fontSize: 24 }}>
             {planet.name}
           </Text>
+          <Text style={{marginBottom: 20}}>{planet.description}</Text>
           <Pressable
             onPress={() => navigation.navigate("PlanetPage")}
             hitSlop={15}
@@ -69,14 +70,15 @@ const PlanetCard = ({ planet, index }: Props) => {
                 alignItems: "center",
                 justifyContent: "space-between",
                 paddingVertical: 6,
-                paddingHorizontal: 14,
+                paddingHorizontal: 16,
                 alignSelf: "flex-start",
                 borderRadius: 12,
-                backgroundColor: "black",
+                backgroundColor: "#1A4379",
+                width: "100%"
               },
             ]}
           >
-            <Text style={{ color: "white", fontSize: 14 }}>Continuer</Text>
+            <Text style={{ color: "white", fontSize: 16, fontWeight: "bold" }}>Continuer</Text>
             <Icon
               style={{ marginLeft: 6 }}
               name="chevron-forward"

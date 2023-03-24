@@ -83,7 +83,7 @@ const PlanetPage = (props: Props) => {
   });
 
   return (
-    <ScreenLayout noPadding>
+    <ScreenLayout noPadding style={{backgroundColor: "white"}}>
       <Animated.ScrollView
         onScroll={scrollHandler}
         scrollEventThrottle={16}
@@ -134,11 +134,12 @@ const PlanetPage = (props: Props) => {
                 fontWeight: "900",
                 marginLeft: 4,
                 marginBottom: 10,
+                color: "white"
               }}
             >
               Earth
             </Text>
-            <Text style={{ fontSize: 16 }}>
+            <Text style={{ fontSize: 16, color: "white" }}>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore
               non magnam minus at et facilis possimus exercitationem sunt
               dignissimos blanditiis.

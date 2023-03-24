@@ -1,7 +1,7 @@
 import { Pressable, View, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-export const Button = ({ name, link }: { name: string; link?: string }) => {
+export const Button = ({ name, onPress }: { name: string, onPress?: Function }) => {
   const navigation = useNavigation();
 
   return (
@@ -9,9 +9,10 @@ export const Button = ({ name, link }: { name: string; link?: string }) => {
       style={{
         marginTop: 46,
         borderRadius: 10,
-        backgroundColor: "#1A4379"
+        backgroundColor: "#1A4379",
+        width: "100%"
       }}
-      onPress={() => navigation.navigate(link)}
+      onPress={onPress}
     >
       <Text
         style={{

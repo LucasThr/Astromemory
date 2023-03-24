@@ -25,6 +25,8 @@ export const images = {
   capricorn: require("./capricorn.png"),
   gemini: require("./gemini.png"),
   leo: require("./leo.png"),
+  logo: require("./astro-logo.png"),
+  logo_image: require("./astro-logo-image.png"),
   libra: require("./libra.png"),
   pisces: require("./pisces.png"),
   sagittarius: require("./sagittarius.png"),
@@ -32,7 +34,6 @@ export const images = {
   taurus: require("./taurus.png"),
   virgo: require("./virgo.png"),
   star: require("./star.png"),
-  logo: require("./logo.png"),
   moon_background: require("./moon_background.png"),
   satellite: require("./satellite.png"),
 };
