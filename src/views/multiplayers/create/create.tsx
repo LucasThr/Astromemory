@@ -6,13 +6,16 @@ import { Button } from "../../../components/button";
 import { Header } from "../../../components/header";
 import { useState } from "react";
 import { roomService } from "../../../services/room.service";
+import { useNavigation } from "@react-navigation/native";
 
 export const Create = () => {
+  const navigation = useNavigation();
 
   const [user, setUser] = useState([])
 
   const createRoom = async () => {
-    let user = await roomService.create()
+    // let user = await roomService.create();
+    navigation.navigate("Launch")
   }
 
   return (
@@ -85,7 +88,7 @@ export const Create = () => {
             </View>
           </View>
         </View>
-        <Button name="Valider" link="Launch" />
+        <Button name="Valider" onPress={createRoom}/>
       </View>
     </ScreenLayout>
   );

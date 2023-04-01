@@ -42,6 +42,7 @@ export const Home = () => {
               title="Multijoueur"
               image={images.background_multi}
               link="Multiplayers"
+              // link="Questions"
               viewStyle={{ width: width(44) - 16 }}
               textStyle={{ textAlign: "center" }}
             />

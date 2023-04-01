@@ -12,6 +12,7 @@ import { Join } from "../views/multiplayers/join/join";
 import { Wait } from "../views/multiplayers/join/wait";
 import { Create } from "../views/multiplayers/create/create";
 import { Launch } from "../views/multiplayers/create/launch";
+import { Questions } from "../views/multiplayers/quiz/questions";
 
 export const Router = () => {
   const Stack = createNativeStackNavigator();
@@ -78,6 +79,11 @@ export const Router = () => {
           options={{ headerShown: false }}
           name="Solo"
           component={Solo}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Questions"
+          component={Questions}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -40,7 +40,7 @@ export const Join = () => {
           />
           <Input title="Code de la session" placeholder="123456" />
         </View>
-        <Button name="Valider" link="Wait" onPress={joinRoom} />
+        <Button name="Valider" onPress={joinRoom} />
       </View>
     </ScreenLayout>
   );
