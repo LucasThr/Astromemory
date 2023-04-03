@@ -2,8 +2,8 @@ import { Image, Text, View } from "react-native";
 import { images } from "../../../assets/img";
 import { Players } from "../data/player";
 
-export const List = () => {
-
+export const List = ({ users }) => {
+  console.log("users", users);
   return (
     <>
       <View
@@ -23,41 +23,34 @@ export const List = () => {
             fontWeight: "bold",
             textAlign: "center",
             marginBottom: 24,
-            color: "white"
+            color: "white",
           }}
         >
           Liste des joueurs
         </Text>
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            gap: 10,
-            marginBottom: 10,
-          }}
-        >
-          <Image style={{ width: 24, height: 24 }} source={images.star} />
-          <Text
-            style={{
-              fontSize: 18,
-              fontWeight: "bold",
-              color: "white"
-            }}
-          >
-            Diroshow
-          </Text>
-        </View>
         <View style={{ gap: 10 }}>
-          {Players.map((player) => (
-            <Text
+          {users?.map((user) => (
+            <View
               style={{
-                fontSize: 18,
-                fontWeight: "bold",
-                color: "white"
+                flexDirection: "row",
+                alignItems: "center",
+                gap: 10,
+                marginBottom: 10,
               }}
             >
-              {player}
-            </Text>
+              {user?.owner && (
+                <Image style={{ width: 24, height: 24 }} source={images.star} />
+              )}
+              <Text
+                style={{
+                  fontSize: 18,
+                  fontWeight: "bold",
+                  color: "white",
+                }}
+              >
+                {user?.users?.name}
+              </Text>
+            </View>
           ))}
         </View>
       </View>

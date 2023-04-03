@@ -10,3 +10,5 @@ export default function App() {
     </SafeAreaProvider>
   );
 }
+
+// npx supabase gen types typescript --project-id "ddyfkljovxwifqdlnkiy" --schema public > src/interfaces/database.d.ts

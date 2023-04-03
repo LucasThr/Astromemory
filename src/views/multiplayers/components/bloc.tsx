@@ -1,8 +1,9 @@
-import { Text, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 
-export const Bloc = ({title}: {title: string}) => {
+export const Bloc = ({ onPress, title }: { onPress: any; title: string }) => {
   return (
-    <View
+    <Pressable
+      onPress={onPress}
       style={{
         backgroundColor: "#303747",
         borderRadius: 10,
@@ -15,6 +16,6 @@ export const Bloc = ({title}: {title: string}) => {
       <Text style={{ fontSize: 28, fontWeight: "bold", color: "white" }}>
         {title}
       </Text>
-    </View>
+    </Pressable>
   );
 };

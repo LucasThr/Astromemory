@@ -1,15 +1,28 @@
 import { supabase } from "../libs/supabase";
 
 const create = async (name: string) => {
-  console.log('name', name)
-  const { error } = await supabase.from("users").insert([
-    {
-      name: name,
-    },
-  ]);
-  console.log('error', error)
+  console.log("name", name);
+  const { data, error } = await supabase
+    .from("users")
+    .insert([
+      {
+        name: name,
+      },
+    ])
+    .select()
+    .single();
+  console.log("error", error);
 
-  return { error };
+  return { data, error };
 };
 
-export const userService = { create };
+const getAllFromRoom = async (room_id: number) => {
+  const { data, error } = await supabase
+    .from("room_user")
+    .select("id,owner,users(id,name)")
+    .eq("room_id", room_id);
+
+  return { data, error };
+};
+
+export const userService = { create, getAllFromRoom };

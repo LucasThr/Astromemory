@@ -1,22 +1,39 @@
 import { StyleSheet, Text, View } from "react-native";
-import { ScreenLayout } from "../../../layouts/screen.layout";
-import { Input } from "../components/input";
-import { mainstyles } from "../../../assets/style/style";
-import { Button } from "../../../components/button";
-import { Header } from "../../../components/header";
+import { ScreenLayout } from "../../layouts/screen.layout";
+import { Input } from "./components/input";
+import { mainstyles } from "../../assets/style/style";
+import { Button } from "../../components/button";
+import { Header } from "../../components/header";
 import { useState } from "react";
-import { roomService } from "../../../services/room.service";
+import { roomService } from "../../services/room.service";
 import { useNavigation } from "@react-navigation/native";
+import { userService } from "../../services/user.service";
+import { log } from "react-native-reanimated";
 
 export const Create = () => {
   const navigation = useNavigation();
 
-  const [user, setUser] = useState([])
-
+  const [username, setUsername] = useState("");
+  const [numberOfQuestions, setNumberOfQuestions] = useState(7);
+  const [themes, setThemes] = useState([]);
+  const [error, setError] = useState("");
   const createRoom = async () => {
-    // let user = await roomService.create();
-    navigation.navigate("Launch")
-  }
+    setError("");
+    if (!username) return setError("Veuillez renseigner un pseudo");
+    let userCreated = await userService.create(username);
+    if (!userCreated?.data?.id) return setError("Une erreur est survenue");
+    let user_id = userCreated?.data?.id;
+    let roomCreated = await roomService.create(
+      user_id,
+      numberOfQuestions,
+      "waiting",
+      themes
+    );
+    console.log("roomCreated?.error", roomCreated?.error);
+    if (roomCreated?.error) return setError("Une erreur est survenue");
+
+    navigation.navigate("Wait", { room: roomCreated?.data, isOwner: true });
+  };
 
   return (
     <ScreenLayout>
@@ -29,13 +46,10 @@ export const Create = () => {
             { marginBottom: 40 },
           ]}
         >
-          Création de parties
+          Création de la partie
         </Text>
         <View style={{ gap: 32 }}>
-        <Input
-            title="Pseudo"
-            placeholder="Diroshow"
-          />
+          <Input onChange={setUsername} title="Pseudo" placeholder="Diroshow" />
           <View
             style={[
               style.block,
@@ -70,7 +84,12 @@ export const Create = () => {
             ]}
           >
             <Text
-              style={{ fontSize: 24, fontWeight: "bold", marginBottom: 20, color: "white" }}
+              style={{
+                fontSize: 24,
+                fontWeight: "bold",
+                marginBottom: 20,
+                color: "white",
+              }}
             >
               Nombre de questions
             </Text>
@@ -88,7 +107,7 @@ export const Create = () => {
             </View>
           </View>
         </View>
-        <Button name="Valider" onPress={createRoom}/>
+        <Button name="Valider" onPress={createRoom} />
       </View>
     </ScreenLayout>
   );

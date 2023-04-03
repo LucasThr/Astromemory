@@ -1,11 +1,11 @@
 import { Text, View } from "react-native";
-import { ScreenLayout } from "../../../layouts/screen.layout";
-import { mainstyles } from "../../../assets/style/style";
-import { Button } from "../../../components/button";
-import { Input } from "../components/input";
-import { Header } from "../../../components/header";
+import { ScreenLayout } from "../../layouts/screen.layout";
+import { mainstyles } from "../../assets/style/style";
+import { Button } from "../../components/button";
+import { Input } from "./components/input";
+import { Header } from "../../components/header";
 import { useState } from "react";
-import { userService } from "../../../services/user.service";
+import { userService } from "../../services/user.service";
 import { useNavigation } from "@react-navigation/native";
 
 export const Join = () => {
@@ -15,7 +15,7 @@ export const Join = () => {
 
   const joinRoom = async () => {
     let user = await userService.create(name);
-    navigation.navigate("Wait")
+    navigation.navigate("Wait");
   };
 
   return (
