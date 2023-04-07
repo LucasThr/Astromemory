@@ -1,8 +1,6 @@
 import { ScreenLayout } from "../../layouts/screen.layout";
 import { ActivityIndicator, Text, View } from "react-native";
-import { Header } from "../../components/header";
 import { mainstyles } from "../../assets/style/style";
-import { Time } from "./components/time";
 import { Bloc } from "./components/bloc";
 import { useEffect, useState } from "react";
 import { questionService } from "../../services/question.service";
@@ -27,19 +25,17 @@ export const Questions = ({
   const [responses, setResponses] = useState<number[] | string[]>([]);
   const [reveal, setReveal] = useState(false);
   const [score, setScore] = useState(0);
+  const [timerCount, setTimer] = useState<number>(200);
+  const [stopTime, setStopTime] = useState<null | number>(null);
   const getQuestion = async (index: number) => {
-    console.log("index", index);
     setLoading(true);
     let { data: dataQuestion, error } = await questionService.getOne(index);
-    console.log("error", error);
-    console.log("dataQuestions", dataQuestion);
     setQuestion(dataQuestion.question);
     let resp = [
       { isRight: true, answer: dataQuestion.answer },
       { isRight: false, answer: dataQuestion.wrong_answer[0] },
       { isRight: false, answer: dataQuestion.wrong_answer[1] },
     ];
-    console.log("resp", resp);
     setResponses(shuffle(resp));
     setLoading(false);
   };
@@ -49,12 +45,14 @@ export const Questions = ({
 
   const validateResponse = async (response: string) => {
     setReveal(true);
+    console.log("stopTime", stopTime);
+    let timeToScore = (stopTime / 200) * 1000;
+    // console.log("timeFix", timeToScore);
     if (response.isRight) {
       console.log("Bonne réponse");
-      setScore((score) => score + 1000);
-      console.log("room_user", room_user);
+      setScore((score) => score + 100 + timeToScore);
       const addPoints = await roomService.addPoints(room_user.id, score + 1000);
-      if (addPoints.error) setError(addPoints.error);
+      if (addPoints.error) setError("Erreur lors de l'ajout des points");
     } else {
       console.log("Mauvaise réponse");
     }
@@ -64,13 +62,18 @@ export const Questions = ({
       return;
     }
     console.log("score", score);
+    setTimer(200);
     setTimeout(() => {
+      setStopTime(null);
       setReveal(false);
       getQuestion(room.questions_list[stepQuestion + 1]);
       setStepQuestion(stepQuestion + 1);
     }, 1000);
   };
 
+  const getTime = (time: number) => {
+    setTimer(time);
+  };
   return (
     <ScreenLayout>
       <View style={{ flex: 1, justifyContent: "space-between" }}>
@@ -121,6 +124,8 @@ export const Questions = ({
               {question}
             </Text>
             <Timer
+              setStopTime={setStopTime}
+              key={stepQuestion}
               stop={reveal}
               onFinish={() => {
                 console.log("reveal", reveal);
