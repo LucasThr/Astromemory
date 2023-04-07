@@ -29,10 +29,18 @@ export const Create = () => {
       "waiting",
       themes
     );
+    let room_id = roomCreated?.data?.id;
     console.log("roomCreated?.error", roomCreated?.error);
     if (roomCreated?.error) return setError("Une erreur est survenue");
 
-    navigation.navigate("Wait", { room: roomCreated?.data, isOwner: true });
+    let userRoom = await roomService.addUserToRoom(user_id, room_id, true);
+    if (userRoom.error) return setError("Une erreur est survenue");
+
+    navigation.navigate("Wait", {
+      room_user: userRoom.data,
+      room: roomCreated?.data,
+      isOwner: true,
+    });
   };
 
   return (

@@ -19,7 +19,7 @@ const create = async (name: string) => {
 const getAllFromRoom = async (room_id: number) => {
   const { data, error } = await supabase
     .from("room_user")
-    .select("id,owner,users(id,name)")
+    .select("*,users(id,name)")
     .eq("room_id", room_id);
 
   return { data, error };

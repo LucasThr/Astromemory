@@ -8,12 +8,11 @@ import Lessons from "../views/lessons/lessons.index";
 import Constellations from "../views/lessons/constellations/constellations.index";
 import ConstellationPage from "../views/lessons/constellations/constellation.page";
 import { Planets } from "../views/lessons/planets/planets.index";
-import { Launch } from "../views/multiplayers/create/launch";
-import { Questions } from "../views/multiplayers/quiz/questions";
 import { Join } from "../views/multiplayers/join.room";
 import { Wait } from "../views/multiplayers/waiting.room";
 import { Create } from "../views/multiplayers/create.room";
 import ResultMulti from "../views/multiplayers/result.multi";
+import { Questions } from "../views/multiplayers/questions.multi";
 
 export const Router = () => {
   const Stack = createNativeStackNavigator();
@@ -75,11 +74,6 @@ export const Router = () => {
           options={{ headerShown: false }}
           name="Create"
           component={Create}
-        />
-        <Stack.Screen
-          options={{ headerShown: false }}
-          name="Launch"
-          component={Launch}
         />
         <Stack.Screen
           options={{ headerShown: false }}

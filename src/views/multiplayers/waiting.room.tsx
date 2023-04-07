@@ -20,7 +20,7 @@ export const Wait = ({
   route: any;
   navigation: any;
 }) => {
-  const { room, isOwner } = route.params;
+  const { room, room_user, isOwner } = route.params;
   const [users, setUsers] = useState<any>([]);
 
   const fetchUsers = async (room_id: number) => {
@@ -59,7 +59,11 @@ export const Wait = ({
             // supabase.removeAllChannels();
             // setIsLoading(false);*
             console.log("room", room);
-            navigation.navigate("Questions", { room: room, isOwner: isOwner });
+            navigation.navigate("Questions", {
+              room: room,
+              room_user: room_user,
+              isOwner: isOwner,
+            });
           }
         }
       )

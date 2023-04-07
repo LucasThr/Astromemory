@@ -22,9 +22,6 @@ const create = async (
 
   if (error) return { data, error };
 
-  let userRoom = await addUserToRoom(user_id, data.id, true);
-  if (userRoom.error) return { error: userRoom.error };
-
   return { data, error };
 };
 
@@ -48,6 +45,16 @@ const addUserToRoom = async (
   return { data, error };
 };
 
+const get = async (code: number) => {
+  const { data, error } = await supabase
+    .from("rooms")
+    .select()
+    .eq("code", code)
+    .single();
+
+  return { data, error };
+};
+
 const launch = async (room_id: number) => {
   const { data, error } = await supabase
     .from("rooms")
@@ -57,4 +64,36 @@ const launch = async (room_id: number) => {
   return { data, error };
 };
 
-export const roomService = { create, addUserToRoom, launch };
+const join = async (room_id: number, user_id: number) => {
+  const { data, error } = await supabase
+    .from("room_user")
+    .insert([
+      {
+        user_id: user_id,
+        room_id: room_id,
+        owner: false,
+      },
+    ])
+    .select()
+    .single();
+
+  return { data, error };
+};
+
+const addPoints = async (room_user_id: number, score: number) => {
+  const { data, error } = await supabase
+    .from("room_user")
+    .update({ score: score })
+    .eq("id", room_user_id);
+
+  return { data, error };
+};
+
+export const roomService = {
+  create,
+  addUserToRoom,
+  launch,
+  get,
+  join,
+  addPoints,
+};
