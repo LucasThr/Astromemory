@@ -45,7 +45,7 @@ export const Create = () => {
   };
 
   return (
-    <ScreenLayout>
+    <ScreenLayout enableDismiss>
       <Header />
       <View style={{ flex: 1, justifyContent: "center" }}>
         <Text
@@ -117,7 +117,7 @@ export const Create = () => {
               </View>
               <Slider
                 style={{ width: 200, height: 40 }}
-                minimumValue={0}
+                minimumValue={1}
                 maximumValue={10}
                 minimumTrackTintColor="#FFFFFF"
                 maximumTrackTintColor="#000000"
@@ -128,7 +128,7 @@ export const Create = () => {
             </View>
           </View>
         </View>
-        <Button name="Valider" onPress={createRoom} />
+        <Button style={{ marginTop: 20 }} name="Valider" onPress={createRoom} />
       </View>
     </ScreenLayout>
   );

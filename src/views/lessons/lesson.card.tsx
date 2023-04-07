@@ -67,8 +67,8 @@ const LessonCard = ({ translateX, index, maxIndex, lesson }: Props) => {
     <Animated.View
       style={[
         {
-          flex:1,
-          justifyContent:'center',
+          flex: 1,
+          justifyContent: "center",
           alignItems: "center",
           width: width(80),
           // marginLeft: index === 0 ? width(10) : 0,
@@ -78,13 +78,13 @@ const LessonCard = ({ translateX, index, maxIndex, lesson }: Props) => {
       ]}
     >
       <Image
-          style={{
-            zIndex: 50,
-            width: 180,
-            height: 180
-          }}
-          source={require("../../assets/img/earth.png")}
-        />
+        style={{
+          zIndex: 50,
+          width: 180,
+          height: 180,
+        }}
+        source={require("../../assets/img/earth.png")}
+      />
       <View
         style={{
           backgroundColor: "#0B1729",
@@ -94,10 +94,9 @@ const LessonCard = ({ translateX, index, maxIndex, lesson }: Props) => {
           paddingVertical: 46,
           paddingHorizontal: 32,
           position: "relative",
-          marginTop: -80
+          marginTop: -80,
         }}
       >
-        
         <Text
           style={{
             marginBottom: 8,
@@ -113,9 +112,25 @@ const LessonCard = ({ translateX, index, maxIndex, lesson }: Props) => {
           Our home planet is the third planet from the Sun, and the only place
           we know things.
         </Text>
-        <Text style={{color: "white", fontWeight: "bold", fontSize: 175, opacity: 0.5, position: "absolute", right: 20, top: 50}}>3</Text>
+        <Text
+          style={{
+            color: "white",
+            fontWeight: "bold",
+            fontSize: 175,
+            opacity: 0.5,
+            position: "absolute",
+            right: 20,
+            top: 50,
+          }}
+        >
+          3
+        </Text>
       </View>
-      <Button onPress={() => navigation.navigate(lesson.link)} name="Valider" />
+      <Button
+        style={{ marginTop: 20 }}
+        onPress={() => navigation.navigate(lesson.link)}
+        name="Valider"
+      />
     </Animated.View>
   );
 };

@@ -1,4 +1,10 @@
-import { Text, View } from "react-native";
+import {
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  Text,
+  View,
+} from "react-native";
 import { ScreenLayout } from "../../layouts/screen.layout";
 import { mainstyles } from "../../assets/style/style";
 import { Button } from "../../components/button";
@@ -8,11 +14,12 @@ import { useState } from "react";
 import { userService } from "../../services/user.service";
 import { useNavigation } from "@react-navigation/native";
 import { roomService } from "../../services/room.service";
+import { DismissKeyboard } from "../../layouts/keyboard.layout";
 
 export const Join = () => {
   const navigation = useNavigation();
   const [error, setError] = useState("");
-  const [code, setCode] = useState(null);
+  const [code, setCode] = useState(undefined);
   const [username, setUsername] = useState("");
 
   const joinRoom = async () => {
@@ -41,9 +48,14 @@ export const Join = () => {
   };
 
   return (
-    <ScreenLayout>
+    <ScreenLayout enableDismiss>
       <Header />
-      <View style={{ flex: 1, justifyContent: "center" }}>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+        }}
+      >
         <Text
           style={[
             mainstyles.title,
@@ -53,22 +65,27 @@ export const Join = () => {
         >
           Rejoindre un salon
         </Text>
-        <View style={{ gap: 32 }}>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          style={{ gap: 32 }}
+        >
           <Input
             title="Pseudo"
             placeholder="Mastu"
             onChange={setUsername}
             value={username}
           />
+
           <Input
+            keyboardType="numeric"
             onChange={setCode}
             value={code}
             title="Code de la session"
             placeholder="123456"
           />
-        </View>
-        <Button name="Valider" onPress={joinRoom} />
-        <Text style={[mainstyles.textcenter, { color: "red" }]}>{error}</Text>
+          <Button style={{ marginTop: 20 }} name="Valider" onPress={joinRoom} />
+          <Text style={[mainstyles.textcenter, { color: "red" }]}>{error}</Text>
+        </KeyboardAvoidingView>
       </View>
     </ScreenLayout>
   );

@@ -1,6 +1,18 @@
-import { Text, View, TextInput } from "react-native";
+import { Text, View, TextInput, KeyboardTypeOptions } from "react-native";
 
-export const Input = ({title, value, placeholder,onChange}:{title: string, value?: string, placeholder?: string, onChange?:any}) => {
+export const Input = ({
+  title,
+  keyboardType,
+  value,
+  placeholder,
+  onChange,
+}: {
+  keyboardType?: KeyboardTypeOptions | undefined;
+  title: string;
+  value?: string;
+  placeholder?: string;
+  onChange?: any;
+}) => {
   return (
     <View
       style={{
@@ -12,8 +24,24 @@ export const Input = ({title, value, placeholder,onChange}:{title: string, value
         paddingVertical: 24,
       }}
     >
-      <Text style={{fontSize: 20, color: "white", fontWeight: "bold", marginBottom: 12}}>{title}</Text>
-      <TextInput value={value} onChangeText={onChange} placeholderTextColor={"#818585"} placeholder={placeholder} style={{fontSize: 30, fontWeight: "bold", color: "white"}} />
+      <Text
+        style={{
+          fontSize: 20,
+          color: "white",
+          fontWeight: "bold",
+          marginBottom: 12,
+        }}
+      >
+        {title}
+      </Text>
+      <TextInput
+        keyboardType={keyboardType}
+        value={value}
+        onChangeText={onChange}
+        placeholderTextColor={"#818585"}
+        placeholder={placeholder}
+        style={{ fontSize: 30, fontWeight: "bold", color: "white" }}
+      />
     </View>
   );
 };

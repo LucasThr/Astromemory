@@ -47,6 +47,7 @@ const ResultMulti = (props: Props) => {
       })}
       <Button
         name="Quitter"
+        style={{ marginTop: 20 }}
         onPress={() => navigation.navigate("Home")}
       ></Button>
     </ScreenLayout>

@@ -121,6 +121,7 @@ export const Wait = ({
         <List users={users} />
         {isOwner ? (
           <Button
+            style={{ marginTop: 20 }}
             name="Start"
             onPress={() => {
               console.log("okok");
