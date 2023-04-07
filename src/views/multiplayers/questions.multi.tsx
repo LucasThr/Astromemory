@@ -26,7 +26,6 @@ export const Questions = ({
   const [reveal, setReveal] = useState(false);
   const [score, setScore] = useState(0);
   const [timerCount, setTimer] = useState<number>(200);
-  const [stopTime, setStopTime] = useState<null | number>(null);
   const getQuestion = async (index: number) => {
     setLoading(true);
     let { data: dataQuestion, error } = await questionService.getOne(index);
@@ -45,8 +44,8 @@ export const Questions = ({
 
   const validateResponse = async (response: string) => {
     setReveal(true);
-    console.log("stopTime", stopTime);
-    let timeToScore = (stopTime / 200) * 1000;
+    console.log("stopTime", timerCount);
+    let timeToScore = (timerCount / 200) * 1000;
     // console.log("timeFix", timeToScore);
     if (response.isRight) {
       console.log("Bonne réponse");
@@ -64,7 +63,6 @@ export const Questions = ({
     console.log("score", score);
     setTimer(200);
     setTimeout(() => {
-      setStopTime(null);
       setReveal(false);
       getQuestion(room.questions_list[stepQuestion + 1]);
       setStepQuestion(stepQuestion + 1);
@@ -124,7 +122,8 @@ export const Questions = ({
               {question}
             </Text>
             <Timer
-              setStopTime={setStopTime}
+              timerCount={timerCount}
+              setTimer={getTime}
               key={stepQuestion}
               stop={reveal}
               onFinish={() => {

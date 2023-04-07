@@ -2,14 +2,13 @@ import { View, Text } from "react-native";
 import React, { useEffect, useState } from "react";
 
 type Props = {
-  setStopTime: Function;
+  timerCount: number;
+  setTimer: Function;
   stop: boolean;
   onFinish: Function;
 };
 
-const Timer = ({ setStopTime, stop, onFinish }: Props) => {
-  const [timerCount, setTimer] = useState<number>(200);
-
+const Timer = ({ timerCount, setTimer, stop, onFinish }: Props) => {
   useEffect(() => {
     let interval = setInterval(() => {
       setTimer((lastTimerCount) => {
@@ -17,7 +16,6 @@ const Timer = ({ setStopTime, stop, onFinish }: Props) => {
         if (stop) {
           console.log("stop", stop);
           clearInterval(interval);
-          setStopTime(lastTimerCount);
           return lastTimerCount;
         }
         //your redirection to Quit screen
