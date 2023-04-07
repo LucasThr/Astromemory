@@ -9,7 +9,7 @@ import Animated, {
   withSequence,
   withTiming,
 } from "react-native-reanimated";
-import { Circle, Canvas } from "@shopify/react-native-skia";
+import { stars } from "../mocks/stars.mocks";
 
 export const ScreenLayout = ({
   children,
@@ -25,27 +25,30 @@ export const ScreenLayout = ({
 
   const SIGNAL_COLOR = "#FFFFFF33";
 
-  const STARS = [
+  const _STARS = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
     22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
-    // 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
-    // 41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
+    22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
+    41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
   ];
 
-  const glowAnimation = useAnimatedStyle(() => ({
-    transform: [
-      {
-        scale: withRepeat(
-          withSequence(
-            withTiming(5, { duration: 1250 }),
-            withTiming(1, { duration: 1000 })
+  const glowAnimation = () =>
+    useAnimatedStyle(() => ({
+      transform: [
+        {
+          scale: withRepeat(
+            withSequence(
+              withTiming(Math.random() * (5 - 2) + 2, {
+                duration: Math.random() * (3000 - 1200) + 1200,
+              }),
+              withTiming(1, { duration: 1000 })
+            ),
+            -1,
+            true
           ),
-          -1,
-          true
-        ),
-      },
-    ],
-  }));
+        },
+      ],
+    }));
 
   return (
     <LinearGradient
@@ -111,40 +114,38 @@ export const ScreenLayout = ({
           backgroundColor: "purple",
         }}
       >
-        {STARS.map((_, index) => {
-          let starSize = Math.random() * 3;
-          let isAnimated = Math.random() > 0.1;
+        {stars.map((star, index) => {
           return (
             <Animated.View
               key={index}
               style={[
                 {
                   position: "absolute",
-                  top: Math.floor(Math.random() * height(100) + 1),
-                  left: Math.floor(Math.random() * width(100) + 1),
+                  top: star.top,
+                  left: star.left,
                   justifyContent: "center",
                   alignItems: "center",
                 },
               ]}
             >
-              {isAnimated && (
+              {star.isAnimated && (
                 <Animated.View
                   style={[
                     {
-                      height: starSize * 1.3,
-                      width: starSize * 1.3,
+                      height: star.starSize * 1.3,
+                      width: star.starSize * 1.3,
                       position: "absolute",
                       borderRadius: 999,
                       backgroundColor: "#FFFFFF26",
                     },
-                    isAnimated && glowAnimation,
+                    star.isAnimated && glowAnimation(1),
                   ]}
                 />
               )}
               <View
                 style={{
-                  height: starSize,
-                  width: starSize,
+                  height: star.starSize,
+                  width: star.starSize,
                   borderRadius: 999,
                   backgroundColor: "#FFFFFFFF",
                 }}

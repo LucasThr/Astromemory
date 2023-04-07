@@ -7,10 +7,8 @@ import { List } from "./components/list";
 import { useEffect, useState } from "react";
 import { supabase } from "../../libs/supabase";
 import { userService } from "../../services/user.service";
-import { NavigationProp, useRoute } from "@react-navigation/native";
 import { roomService } from "../../services/room.service";
 import { Button } from "../../components/button";
-import { log } from "react-native-reanimated";
 
 let subscription: any;
 export const Wait = ({
