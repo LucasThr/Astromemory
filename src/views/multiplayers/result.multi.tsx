@@ -80,7 +80,7 @@ const ResultMulti = (props: Props) => {
       })}
       <Results />
       <Button
-        name="Quitter"
+        name="Retour au menu"
         onPress={() => navigation.navigate("Home")}
       ></Button>
     </ScreenLayout>
