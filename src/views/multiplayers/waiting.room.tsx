@@ -83,40 +83,39 @@ export const Wait = ({
     <ScreenLayout>
       <Header />
       <View style={{ flex: 1, justifyContent: "center" }}>
-        <View style={{ flex: 1, justifyContent: "center" }}>
+        <Text
+          style={{
+            textAlign: "center",
+            fontSize: 24,
+            color: "#fff",
+            fontWeight: "400",
+            marginBottom: 10,
+          }}
+        >
+          Session
+        </Text>
+        <View
+          style={{
+            alignSelf: "center",
+            paddingHorizontal: 20,
+            paddingVertical: 8,
+            backgroundColor: "#000",
+            borderRadius: 5,
+            borderColor: "#fff",
+            borderWidth: 1,
+            marginBottom: 40,
+          }}
+        >
           <Text
             style={{
               textAlign: "center",
-              fontSize: 30,
+              fontSize: 24,
               color: "#fff",
               fontWeight: "700",
-              marginBottom: 10,
             }}
           >
-            Code
+            {room?.code}
           </Text>
-          <View
-            style={{
-              alignSelf: "center",
-              paddingHorizontal: 30,
-              paddingVertical: 10,
-              backgroundColor: "#000",
-              borderRadius: 10,
-              borderColor: "#fff",
-              borderWidth: 1,
-            }}
-          >
-            <Text
-              style={{
-                textAlign: "center",
-                fontSize: 30,
-                color: "#fff",
-                fontWeight: "900",
-              }}
-            >
-              {room?.code}
-            </Text>
-          </View>
         </View>
         <List users={users} />
         {isOwner ? (

@@ -74,7 +74,11 @@ export const Questions = ({
   };
   return (
     <ScreenLayout>
-      <View style={{ flex: 1, justifyContent: "space-between" }}>
+      {/* <Header /> */}
+      <Text style={{ fontSize: 24, color: "white", textAlign: "right" }}>
+        Score : <Text style={{ fontWeight: "bold" }}>{score.toString()}</Text>
+      </Text>
+      <View style={{ flex: 1, justifyContent: "center" }}>
         <Text
           style={[
             mainstyles.title,
@@ -82,41 +86,20 @@ export const Questions = ({
             { fontWeight: "400" },
           ]}
         >
-          {stepQuestion + 1} / {room.questions_list.length}
+          Questions {stepQuestion + 1} / {room.questions_list.length}
         </Text>
-        <Text
-          style={[
-            mainstyles.title,
-            mainstyles.textcenter,
-            { fontWeight: "400" },
-          ]}
-        >
-          Questions 1
-        </Text>
-        <View
-          style={{
-            height: 30,
-            width: "100%",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Text style={{ fontSize: 25, color: "white" }}>
-            Score : {score.toString()}
-          </Text>
-        </View>
 
         {loading ? (
           <View style={{ flex: 1, justifyContent: "center" }}>
             <ActivityIndicator />
           </View>
         ) : (
-          <View style={{ flex: 1, justifyContent: "center" }}>
+          <View>
             <Text
               style={[
                 mainstyles.title,
                 mainstyles.textcenter,
-                { marginTop: 40 },
+                { marginTop: 40, marginBottom: 30 },
               ]}
             >
               {question}
@@ -131,7 +114,7 @@ export const Questions = ({
                 if (!reveal) validateResponse({ isRight: false });
               }}
             />
-            <View style={{ gap: 32 }}>
+            <View style={{ gap: 32, marginBottom:40 }}>
               {responses.map((response, index) => (
                 <Bloc
                   reveal={reveal}

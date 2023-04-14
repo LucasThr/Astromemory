@@ -1,4 +1,7 @@
 export const images = {
+  winner: require("./1st-place-medal.png"),
+  second: require("./2nd-place-medal.png"),
+  third: require("./3rd-place-medal.png"),
   astronaut: require("./astronaut.jpg"),
   astronaut_info: require("./astronaut-info.png"),
   background_cours: require("./cours.jpg"),

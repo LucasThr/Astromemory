@@ -13,10 +13,14 @@ export const Bloc = ({
     <Pressable
       onPress={onPress}
       style={{
-        backgroundColor: "#303747",
+        backgroundColor: !reveal
+          ? "#303747"
+          : data.isRight
+          ? "#029963"
+          : "#303747",
         borderRadius: 10,
-        borderColor: !reveal ? "#818585" : data.isRight ? "green" : "red",
-        borderWidth: 1,
+        borderColor: "#818585",
+        borderWidth: !reveal ? 1 : data.isRight ? 0 : 1,
         alignItems: "center",
         paddingVertical: 28,
       }}
