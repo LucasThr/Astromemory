@@ -59,7 +59,7 @@ const PlanetCard = ({ planet, index }: Props) => {
           <Text style={{ marginBottom: 10, fontWeight: "800", fontSize: 24 }}>
             {planet.name}
           </Text>
-          <Text style={{marginBottom: 20}}>{planet.description}</Text>
+          <Text style={{ marginBottom: 20 }}>{planet.description}</Text>
           <Pressable
             onPress={() => navigation.navigate("PlanetPage")}
             hitSlop={15}
@@ -74,11 +74,13 @@ const PlanetCard = ({ planet, index }: Props) => {
                 alignSelf: "flex-start",
                 borderRadius: 12,
                 backgroundColor: "#1A4379",
-                width: "100%"
+                width: "100%",
               },
             ]}
           >
-            <Text style={{ color: "white", fontSize: 16, fontWeight: "bold" }}>Continuer</Text>
+            <Text style={{ color: "white", fontSize: 16, fontWeight: "bold" }}>
+              Continuer
+            </Text>
             <Icon
               style={{ marginLeft: 6 }}
               name="chevron-forward"

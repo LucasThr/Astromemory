@@ -21,7 +21,7 @@ const Lessons = (props: Props) => {
 
   const lessons = [
     { id: 1, name: "Planetes", image: "", link: "Planets" },
-    // { id: 2, name: "Constellations", image: "", link: "Constellations" },
+    { id: 2, name: "Constellations", image: "", link: "Constellations" },
     // { id: 3, name: "Etoiles", image: "", link: "" },
     // { id: 4, name: "Galaxies", image: "", link: "" },
     // { id: 5, name: "Satellites", image: "", link: "" },

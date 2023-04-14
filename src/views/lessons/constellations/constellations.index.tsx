@@ -3,6 +3,7 @@ import React from "react";
 import { useDimensions } from "../../../hooks/useDimensions";
 import { ScreenLayout } from "../../../layouts/screen.layout";
 import { useNavigation } from "@react-navigation/native";
+import { GreatOurs } from "./components/grandeourse";
 
 type Props = {};
 
@@ -14,6 +15,7 @@ const Constellations = (props: Props) => {
       <Pressable onPress={() => navigation.navigate("ConstellationPage")}>
         <Text>Pressable</Text>
       </Pressable>
+      <GreatOurs />
     </ScreenLayout>
   );
 };
