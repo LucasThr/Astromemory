@@ -1,9 +1,8 @@
 import { Image, Text, View } from "react-native";
 import { images } from "../../../assets/img";
-import { Players } from "../data/player";
 
 export const List = ({ users }) => {
-  console.log("users", users);
+  
   return (
     <>
       <View
