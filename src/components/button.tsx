@@ -1,23 +1,34 @@
-import { Pressable, View, Text } from "react-native";
+import {
+  Pressable,
+  View,
+  Text,
+  StyleProp,
+  ViewStyle,
+  GestureResponderEvent,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 export const Button = ({
   name,
   onPress,
+  style,
 }: {
   name: string;
-  onPress?: Function;
+  onPress?: ((event: GestureResponderEvent) => void) | null | undefined;
+  style?: StyleProp<ViewStyle>;
 }) => {
   const navigation = useNavigation();
 
   return (
     <Pressable
-      style={{
-        marginTop: 46,
-        borderRadius: 10,
-        backgroundColor: "#1A4379",
-        width: "100%",
-      }}
+      style={[
+        {
+          borderRadius: 10,
+          backgroundColor: "#1A4379",
+          width: "100%",
+        },
+        style,
+      ]}
       onPress={onPress}
     >
       <Text

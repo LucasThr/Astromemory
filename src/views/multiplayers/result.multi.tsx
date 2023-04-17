@@ -82,6 +82,7 @@ const ResultMulti = (props: Props) => {
       <Button
         name="Retour au menu"
         onPress={() => navigation.navigate("Home")}
+        style={{ marginTop: 20 }}
       ></Button>
     </ScreenLayout>
   );

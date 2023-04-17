@@ -9,6 +9,7 @@ import { roomService } from "../../services/room.service";
 import { useNavigation } from "@react-navigation/native";
 import { userService } from "../../services/user.service";
 import { log } from "react-native-reanimated";
+import Slider from "@react-native-community/slider";
 
 export const Create = () => {
   const navigation = useNavigation();
@@ -44,7 +45,7 @@ export const Create = () => {
   };
 
   return (
-    <ScreenLayout>
+    <ScreenLayout enableDismiss>
       <Header />
       <View style={{ flex: 1, justifyContent: "center" }}>
         <Text
@@ -110,12 +111,24 @@ export const Create = () => {
                   paddingVertical: 5,
                 }}
               >
-                <Text style={{ fontSize: 24, fontWeight: "bold" }}>7</Text>
+                <Text style={{ fontSize: 24, fontWeight: "bold" }}>
+                  {numberOfQuestions}
+                </Text>
               </View>
+              <Slider
+                style={{ width: 200, height: 40 }}
+                minimumValue={1}
+                maximumValue={10}
+                minimumTrackTintColor="#FFFFFF"
+                maximumTrackTintColor="#000000"
+                onValueChange={(value) => setNumberOfQuestions(value)}
+                value={numberOfQuestions}
+                step={1}
+              />
             </View>
           </View>
         </View>
-        <Button name="Valider" onPress={createRoom} />
+        <Button style={{ marginTop: 20 }} name="Valider" onPress={createRoom} />
       </View>
     </ScreenLayout>
   );

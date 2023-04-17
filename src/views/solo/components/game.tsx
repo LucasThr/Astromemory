@@ -49,12 +49,14 @@ export const Game = ({
             fontSize: 20,
             textAlign: "center",
             marginBottom: 20,
-            color: "white"
+            color: "white",
           }}
         >
           {name}
         </Text>
-        <Text style={{ textAlign: "center", color: "white" }}>{description}</Text>
+        <Text style={{ textAlign: "center", color: "white" }}>
+          {description}
+        </Text>
       </View>
       <Button name="Start" />
     </View>

@@ -2,13 +2,13 @@ import { View, Text } from "react-native";
 import React, { useEffect, useState } from "react";
 
 type Props = {
+  timerCount: number;
+  setTimer: Function;
   stop: boolean;
   onFinish: Function;
 };
 
-const Timer = ({ stop, onFinish }: Props) => {
-  const [timerCount, setTimer] = useState<number>(200);
-
+const Timer = ({ timerCount, setTimer, stop, onFinish }: Props) => {
   useEffect(() => {
     let interval = setInterval(() => {
       setTimer((lastTimerCount) => {
