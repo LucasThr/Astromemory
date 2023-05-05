@@ -1,23 +1,22 @@
 import { ScreenLayout } from "../../layouts/screen.layout";
 import { ActivityIndicator, Text, View } from "react-native";
 import { mainstyles } from "../../assets/style/style";
-import { Bloc } from "./components/bloc";
+import { Bloc } from "../multiplayers/components/bloc";
 import { useEffect, useState } from "react";
 import { questionService } from "../../services/question.service";
 import { shuffle } from "../../helpers/game.helper";
-import { useRoute } from "@react-navigation/native";
 import Timer from "../../components/timer";
 import { roomService } from "../../services/room.service";
 import { Answer } from "../../interfaces/questions";
 
-export const Questions = ({
+export const QuestionsSolo = ({
   route,
   navigation,
 }: {
   route: any;
   navigation: any;
 }) => {
-  const { room, room_user } = route.params;
+  const { questions_list } = route.params;
 
   const [question, setQuestion] = useState<string | undefined>(undefined);
   const [stepQuestion, setStepQuestion] = useState(0);
@@ -48,7 +47,7 @@ export const Questions = ({
     setLoading(false);
   };
   useEffect(() => {
-    getQuestion(room.questions_list[0]);
+    getQuestion(questions_list[0]);
   }, []);
 
   const validateResponse = async (response: Answer) => {
@@ -65,15 +64,15 @@ export const Questions = ({
       console.log("Mauvaise réponse");
     }
 
-    if (stepQuestion >= room.questions_list.length - 1) {
-      navigation.navigate("ResultMulti", { room: room });
+    if (stepQuestion >= questions_list.length - 1) {
+      navigation.navigate("ResultMulti", { score });
       return;
     }
     console.log("score", score);
     setTimer(200);
     setTimeout(() => {
       setReveal(false);
-      getQuestion(room.questions_list[stepQuestion + 1]);
+      getQuestion(questions_list[stepQuestion + 1]);
       setStepQuestion(stepQuestion + 1);
     }, 1000);
   };
@@ -95,7 +94,7 @@ export const Questions = ({
             { fontWeight: "400" },
           ]}
         >
-          Questions {stepQuestion + 1} / {room.questions_list.length}
+          Questions {stepQuestion + 1} / {questions_list.length}
         </Text>
 
         {loading ? (

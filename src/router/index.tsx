@@ -13,6 +13,7 @@ import { Wait } from "../views/multiplayers/waiting.room";
 import { Create } from "../views/multiplayers/create.room";
 import ResultMulti from "../views/multiplayers/result.multi";
 import { Questions } from "../views/multiplayers/questions.multi";
+import { QuestionsSolo } from "../views/solo/questions.solo";
 
 export const Router = () => {
   const Stack = createNativeStackNavigator();
@@ -79,6 +80,11 @@ export const Router = () => {
           options={{ headerShown: false }}
           name="Solo"
           component={Solo}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="QuestionsSolo"
+          component={QuestionsSolo}
         />
         <Stack.Screen
           options={{ headerShown: false }}

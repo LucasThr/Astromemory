@@ -1,4 +1,6 @@
-export const shuffle = (array: number[] | string[]) => {
+import { Answer } from "../interfaces/questions";
+
+export const shuffle = (array: Answer[]) => {
   let currentIndex = array.length,
     randomIndex;
 
