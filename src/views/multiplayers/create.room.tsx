@@ -102,13 +102,14 @@ export const Create = () => {
             >
               Nombre de questions
             </Text>
-            <View style={{ flexDirection: "row" }}>
+            <View style={{ flexDirection: "row", gap: 20 }}>
               <View
                 style={{
                   borderRadius: 10,
                   borderWidth: 1,
                   paddingHorizontal: 10,
                   paddingVertical: 5,
+                  backgroundColor: "white"
                 }}
               >
                 <Text style={{ fontSize: 24, fontWeight: "bold" }}>
@@ -116,7 +117,7 @@ export const Create = () => {
                 </Text>
               </View>
               <Slider
-                style={{ width: 200, height: 40 }}
+                style={{ width: 220, height: 40 }}
                 minimumValue={1}
                 maximumValue={10}
                 minimumTrackTintColor="#FFFFFF"
@@ -128,7 +129,7 @@ export const Create = () => {
             </View>
           </View>
         </View>
-        <Button style={{ marginTop: 20 }} name="Valider" onPress={createRoom} />
+        <Button style={{ marginTop: 46 }} name="Valider" onPress={createRoom} />
       </View>
     </ScreenLayout>
   );
