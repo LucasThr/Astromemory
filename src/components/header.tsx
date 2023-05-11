@@ -3,7 +3,7 @@ import Icon from "./icon";
 import { useNavigation } from "@react-navigation/native";
 import { images } from "../assets/img";
 
-export const Header = () => {
+export const Header = ({ isAbsolute }: { isAbsolute?: Boolean }) => {
   const navigation = useNavigation();
 
   return (
@@ -14,6 +14,10 @@ export const Header = () => {
         alignItems: "center",
         paddingTop: 20,
         paddingHorizontal: 16,
+        position: isAbsolute && "absolute",
+        top: 30,
+        width: "100%",
+        zIndex: 999,
       }}
     >
       <Pressable

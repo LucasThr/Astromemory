@@ -11,9 +11,10 @@ import { useDimensions } from "../../../../hooks/useDimensions";
 
 type Props = {
   translationY: SharedValue<number>;
+  distance: string;
 };
 
-const DistancePlanet = ({ translationY }: Props) => {
+const DistancePlanet = ({ translationY, distance }: Props) => {
   const { width } = useDimensions();
 
   const rocketStyle = useAnimatedStyle(() => {
@@ -53,7 +54,7 @@ const DistancePlanet = ({ translationY }: Props) => {
           color: "white",
         }}
       >
-        100 005 555 km
+        {distance} km
       </Text>
       <View
         style={{

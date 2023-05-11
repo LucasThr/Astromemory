@@ -16,6 +16,30 @@ import DistancePlanet from "./components/distance.planet";
 
 type Props = {};
 
+const planet = {
+  id: 1,
+  name: "Mercurio",
+  description: "La planète la plus proche du soleil",
+  image: require("../../../assets/img/mercury.png"),
+  distance: "57 909 227 km",
+  radius: "2 439,7 km",
+  rotation: "58j 15h 30m",
+  revolution: "87j 23h 14m",
+  temperature: "430°C",
+  gravity: "3,7 m/s²",
+  satellites: "0",
+  composition: "Fer, Nickel",
+  atmosphere: "Aucune",
+  discovery: "Antiquité",
+  nameDiscoverer: "Inconnu",
+  mass: "3,285 × 10^23 kg",
+  volume: "6,083 × 10^10 km³",
+  density: "5,427 g/cm³",
+  surface: "7,48 × 10^7 km²",
+  pressure: "0,000000 Pa",
+  escape: "15,3 km/s",
+  orbit: "57 909 227 km",
+};
 const PlanetPage = (props: Props) => {
   const { width, height } = useDimensions();
   const translationY = useSharedValue(0);
@@ -83,7 +107,7 @@ const PlanetPage = (props: Props) => {
   });
 
   return (
-    <ScreenLayout noPadding style={{backgroundColor: "white"}}>
+    <ScreenLayout noPadding style={{ backgroundColor: "white" }}>
       <Animated.ScrollView
         onScroll={scrollHandler}
         scrollEventThrottle={16}
@@ -91,8 +115,8 @@ const PlanetPage = (props: Props) => {
       >
         <HeaderLesson />
         <Image
-          style={{ position: "absolute" }}
-          source={require("../../../assets/img/background_planet.png")}
+          style={{ position: "absolute", right: 10, marginTop: 80 }}
+          source={planet.image}
         />
         <Text
           style={{
@@ -105,7 +129,7 @@ const PlanetPage = (props: Props) => {
             left: 50,
           }}
         >
-          3
+          {planet.id}
         </Text>
         <Animated.View
           style={[
@@ -134,15 +158,13 @@ const PlanetPage = (props: Props) => {
                 fontWeight: "900",
                 marginLeft: 4,
                 marginBottom: 10,
-                color: "white"
+                color: "white",
               }}
             >
               Earth
             </Text>
             <Text style={{ fontSize: 16, color: "white" }}>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore
-              non magnam minus at et facilis possimus exercitationem sunt
-              dignissimos blanditiis.
+              {planet.description}
             </Text>
           </View>
           <PlanetImages />
@@ -165,23 +187,25 @@ const PlanetPage = (props: Props) => {
             Données
           </Animated.Text>
           <DataPlanet
-            title={"Average Orbital Speed"}
-            data={"24 007 km/h"}
+            title={"Température"}
+            data={planet.temperature}
             iconName="speedometer"
           />
-          <DataPlanet title={"Satellites"} data={2} iconName="aperture" />
           <DataPlanet
-            title={"Surfaces Area"}
-            data={"144 798 500 km2"}
-            iconName="map"
+            title={"Gravité"}
+            data={planet.gravity}
+            iconName="aperture"
           />
+          <DataPlanet title={"Surface"} data={planet.surface} iconName="map" />
           <DataPlanet
-            title={"Rotation Period"}
-            data={"1.058725525625 d"}
+            title={"Durée de rotation"}
+            data={planet.rotation}
             iconName="disc"
           />
-
-          <DistancePlanet translationY={translationY} />
+          <DistancePlanet
+            distance={planet.distance}
+            translationY={translationY}
+          />
         </View>
         <View style={{ height: 400, width: 300 }} />
         <View style={{ height: 400, width: 300 }} />
