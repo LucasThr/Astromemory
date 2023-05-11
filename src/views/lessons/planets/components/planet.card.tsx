@@ -10,6 +10,7 @@ import Animated, {
 import Icon from "../../../../components/icon";
 import MainText from "../../../../components/text";
 import Text from "../../../../components/text";
+import { images } from "../../../../assets/img";
 
 type Props = { planet: Object };
 
@@ -39,7 +40,7 @@ const PlanetCard = ({ planet, index }: Props) => {
           height: width(30),
         }}
         resizeMode="contain"
-        source={planet.image}
+        source={images[planet.image]}
       />
 
       <Pressable
@@ -61,7 +62,7 @@ const PlanetCard = ({ planet, index }: Props) => {
           </Text>
           <Text style={{ marginBottom: 20 }}>{planet.description}</Text>
           <Pressable
-            onPress={() => navigation.navigate("PlanetPage")}
+            onPress={() => navigation.navigate("PlanetPage", { id: planet.id })}
             hitSlop={15}
             style={({ pressed }) => [
               {

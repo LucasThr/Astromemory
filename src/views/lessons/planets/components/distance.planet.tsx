@@ -54,7 +54,7 @@ const DistancePlanet = ({ translationY, distance }: Props) => {
           color: "white",
         }}
       >
-        {distance} km
+        {distance}
       </Text>
       <View
         style={{

@@ -1,9 +1,13 @@
-import { Image, Text, View } from "react-native";
+import { Image, Text, View, ViewProps, StyleProp } from "react-native";
 import { images } from "../assets/img";
 import { useEffect, useState } from "react";
 import { infosService } from "../services/infos.service";
 
-export const Infos = () => {
+interface Props {
+  style?: ViewProps;
+}
+
+export const Infos = ({ style }: Props) => {
   const [info, setInfo] = useState<string>("");
   const MAX_ROW_INFOS = 7;
   const getInfo = async () => {
@@ -11,7 +15,6 @@ export const Infos = () => {
     console.log("randomInfoIndex", randomInfoIndex);
 
     const infoData = await infosService.getInfo(randomInfoIndex);
-    console.log("first", infoData.data);
     if (infoData.error) return;
     setInfo(infoData?.data?.info);
   };
@@ -21,16 +24,19 @@ export const Infos = () => {
   }, []);
   return (
     <View
-      style={{
-        flexDirection: "row",
-        gap: 12,
-        paddingHorizontal: 6,
-        paddingVertical: 12,
-        backgroundColor: "#354D71",
-        borderRadius: 10,
-        marginBottom: 40,
-        alignItems: "center",
-      }}
+      style={[
+        {
+          flexDirection: "row",
+          gap: 12,
+          paddingHorizontal: 6,
+          paddingVertical: 12,
+          backgroundColor: "#354D71",
+          borderRadius: 10,
+          marginBottom: 40,
+          alignItems: "center",
+        },
+        style,
+      ]}
     >
       <Image source={images.astronaut_info} style={{ width: 28, height: 32 }} />
 

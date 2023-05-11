@@ -20,8 +20,21 @@ const Lessons = (props: Props) => {
   });
 
   const lessons = [
-    { id: 1, name: "Planetes", image: "", link: "Planets" },
-    { id: 2, name: "Constellations", image: "", link: "Constellations" },
+    {
+      id: 1,
+      name: "Planetes",
+      image: "",
+      description:
+        "Découvrez différentes planètes avec chacune leur spécifité en commençant par notre planète : La Terre",
+      link: "Planets",
+    },
+    {
+      id: 2,
+      name: "Constellations",
+      image: "",
+      description: "",
+      link: "Constellations",
+    },
     // { id: 3, name: "Etoiles", image: "", link: "" },
     // { id: 4, name: "Galaxies", image: "", link: "" },
     // { id: 5, name: "Satellites", image: "", link: "" },
@@ -29,7 +42,7 @@ const Lessons = (props: Props) => {
   ];
 
   return (
-    <ScreenLayout>
+    <ScreenLayout noPadding>
       <Header />
 
       <View
@@ -59,18 +72,20 @@ const Lessons = (props: Props) => {
           //     Platform.OS === "android" ? SPACING_FOR_CARD_INSET : 0, // Horizontal spacing before and after the ScrollView
           // }}
         >
-          {lessons.map((lesson: number[], index: number) => (
-            <LessonCard
-              lesson={lesson}
-              translateX={translateX}
-              key={index.toString()}
-              index={index}
-              maxIndex={lessons.length - 1}
-            />
-          ))}
+          {lessons.map((lesson: Object, index: number) => {
+            return (
+              <LessonCard
+                lesson={lesson}
+                translateX={translateX}
+                key={index.toString()}
+                index={index}
+                maxIndex={lessons.length - 1}
+              />
+            );
+          })}
         </Animated.ScrollView>
       </View>
-      <Infos />
+      <Infos style={{ width: width(80), alignSelf: "center" }} />
     </ScreenLayout>
   );
 };

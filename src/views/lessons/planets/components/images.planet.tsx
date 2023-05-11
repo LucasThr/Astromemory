@@ -1,10 +1,19 @@
-import { View, Text } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  ImageProps,
+  ImageSourcePropType,
+} from "react-native";
 import React from "react";
 import { useDimensions } from "../../../../hooks/useDimensions";
+import { images } from "../../../../assets/img";
 
-type Props = {};
+type Props = {
+  planet_images: ImageSourcePropType[];
+};
 
-const PlanetImages = (props: Props) => {
+const PlanetImages = ({ planet_images }: Props) => {
   const { width, height } = useDimensions();
   return (
     <View style={{ alignSelf: "center", marginBottom: 40 }}>
@@ -20,40 +29,30 @@ const PlanetImages = (props: Props) => {
       <View
         style={{
           width: width(90),
-          height: height(20),
-          backgroundColor: "green",
+          height: height(18),
+          backgroundColor: "#FFFFFF",
           borderRadius: 22,
           alignSelf: "center",
           flexDirection: "row",
           justifyContent: "center",
           alignItems: "center",
-          gap: 10,
+          paddingHorizontal: 16,
+          gap: 16,
         }}
       >
-        <View
-          style={{
-            width: 90,
-            height: 90,
-            backgroundColor: "white",
-            borderRadius: 12,
-          }}
-        />
-        <View
-          style={{
-            width: 90,
-            height: 90,
-            backgroundColor: "white",
-            borderRadius: 12,
-          }}
-        />
-        <View
-          style={{
-            width: 90,
-            height: 90,
-            backgroundColor: "white",
-            borderRadius: 12,
-          }}
-        />
+        {planet_images?.map((image) => {
+          console.log("image", image);
+          return (
+            <Image
+              source={images[image]}
+              style={{
+                flex: 1,
+                height: height(14),
+                borderRadius: 12,
+              }}
+            />
+          );
+        })}
       </View>
     </View>
   );

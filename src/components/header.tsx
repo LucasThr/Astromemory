@@ -15,7 +15,7 @@ export const Header = ({ isAbsolute }: { isAbsolute?: Boolean }) => {
         paddingTop: 20,
         paddingHorizontal: 16,
         position: isAbsolute && "absolute",
-        top: 30,
+        top: isAbsolute ? 30 : 0,
         width: "100%",
         zIndex: 999,
       }}

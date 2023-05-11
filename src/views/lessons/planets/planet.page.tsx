@@ -1,5 +1,5 @@
-import { View, Text, Image, ScrollView } from "react-native";
-import React from "react";
+import { View, Text, Image, ScrollView, ActivityIndicator } from "react-native";
+import React, { useEffect, useState } from "react";
 import { ScreenLayout } from "../../../layouts/screen.layout";
 import PlanetImages from "./components/images.planet";
 import { useDimensions } from "../../../hooks/useDimensions";
@@ -7,44 +7,57 @@ import HeaderLesson from "../../../components/header.lesson";
 import Animated, {
   Extrapolate,
   interpolate,
+  interpolateColor,
   useAnimatedScrollHandler,
   useAnimatedStyle,
   useSharedValue,
 } from "react-native-reanimated";
 import DataPlanet from "./components/data.planet";
 import DistancePlanet from "./components/distance.planet";
+import { images } from "../../../assets/img";
+import { Button } from "../../../components/button";
+import { planetService } from "../../../services/planet.service";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 type Props = {};
 
-const planet = {
-  id: 1,
-  name: "Mercurio",
-  description: "La planète la plus proche du soleil",
-  image: require("../../../assets/img/mercury.png"),
-  distance: "57 909 227 km",
-  radius: "2 439,7 km",
-  rotation: "58j 15h 30m",
-  revolution: "87j 23h 14m",
-  temperature: "430°C",
-  gravity: "3,7 m/s²",
-  satellites: "0",
-  composition: "Fer, Nickel",
-  atmosphere: "Aucune",
-  discovery: "Antiquité",
-  nameDiscoverer: "Inconnu",
-  mass: "3,285 × 10^23 kg",
-  volume: "6,083 × 10^10 km³",
-  density: "5,427 g/cm³",
-  surface: "7,48 × 10^7 km²",
-  pressure: "0,000000 Pa",
-  escape: "15,3 km/s",
-  orbit: "57 909 227 km",
-};
+// const planet = {
+//   id: 1,
+//   name: "Mercurio",
+//   description: "La planète la plus proche du soleil",
+//   image: require("../../../assets/img/mercury.png"),
+//   distance: "57 909 227 km",
+//   radius: "2 439,7 km",
+//   rotation: "58j 15h 30m",
+//   revolution: "87j 23h 14m",
+//   temperature: "430°C",
+//   gravity: "3,7 m/s²",
+//   satellites: "0",
+//   composition: "Fer, Nickel",
+//   atmosphere: "Aucune",
+//   discovery: "Antiquité",
+//   nameDiscoverer: "Inconnu",
+//   mass: "3,285 × 10^23 kg",
+//   volume: "6,083 × 10^10 km³",
+//   density: "5,427 g/cm³",
+//   surface: "7,48 × 10^7 km²",
+//   pressure: "0,000000 Pa",
+//   escape: "15,3 km/s",
+//   orbit: "57 909 227 km",
+//   details: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, vel provident? Inventore repudiandae ducimus deleniti dolorum nulla laudantium atque quod sit nam repellat voluptatem voluptatibus  voluptates excepturi cumque dolor fugiat enim quam error, ea,  suscipit eum? Fugiat iusto quas esse excepturi vel magni in,  quibusdam, pariatur ab, dolorum minus iste!
+
+// Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, vel provident? Inventore repudiandae ducimus deleniti dolorum nulla laudantium atque quod sit nam repellat voluptatem voluptatibus  voluptates excepturi cumque dolor fugiat enim quam error, ea,  suscipit eum? Fugiat iusto quas esse excepturi vel magni in,  quibusdam, pariatur ab, dolorum minus iste!`,
+//   images: [images.background_solo, images.background_multi],
+// };
 const PlanetPage = (props: Props) => {
   const { width, height } = useDimensions();
   const translationY = useSharedValue(0);
+  const navigation = useNavigation();
   const MAX_WIDTH = width(100);
   const MAX_HEIGHT = height(100);
+
+  const { params } = useRoute();
+  const [planet, setPlanet] = useState(undefined);
 
   const cubeStyle = useAnimatedStyle(() => {
     const widthAnimated = interpolate(
@@ -77,6 +90,16 @@ const PlanetPage = (props: Props) => {
     };
   });
 
+  const colorStyle = useAnimatedStyle(() => {
+    return {
+      backgroundColor: interpolateColor(
+        translationY.value,
+        [0, 200],
+        ["#175291", "#0E1034"]
+      ),
+    };
+  });
+
   const titleStyle = useAnimatedStyle(() => {
     const translateXAnimated = interpolate(
       translationY.value,
@@ -106,6 +129,23 @@ const PlanetPage = (props: Props) => {
     translationY.value = event.contentOffset.y;
   });
 
+  const getPlanet = async (id: number) => {
+    const planetsData = await planetService.get(id);
+    setPlanet(planetsData);
+  };
+
+  useEffect(() => {
+    getPlanet(params?.id);
+  }, []);
+
+  if (!planet) {
+    return (
+      <ScreenLayout>
+        <ActivityIndicator />
+      </ScreenLayout>
+    );
+  }
+
   return (
     <ScreenLayout noPadding style={{ backgroundColor: "white" }}>
       <Animated.ScrollView
@@ -116,7 +156,7 @@ const PlanetPage = (props: Props) => {
         <HeaderLesson />
         <Image
           style={{ position: "absolute", right: 10, marginTop: 80 }}
-          source={planet.image}
+          source={images[planet.image]}
         />
         <Text
           style={{
@@ -143,6 +183,7 @@ const PlanetPage = (props: Props) => {
               left: 0,
             },
             cubeStyle,
+            colorStyle,
           ]}
         />
         <View
@@ -167,7 +208,7 @@ const PlanetPage = (props: Props) => {
               {planet.description}
             </Text>
           </View>
-          <PlanetImages />
+          <PlanetImages planet_images={planet.images} />
         </View>
         <View style={{ height: 200, width: 300 }} />
         <View>
@@ -207,8 +248,26 @@ const PlanetPage = (props: Props) => {
             translationY={translationY}
           />
         </View>
-        <View style={{ height: 400, width: 300 }} />
-        <View style={{ height: 400, width: 300 }} />
+        <View
+          style={{
+            backgroundColor: "#0E1034",
+            paddingHorizontal: 20,
+            paddingBottom: 30,
+            marginTop: 50,
+          }}
+        >
+          <Text style={{ color: "white", fontSize: 20, lineHeight: 30 }}>
+            {planet.details}
+          </Text>
+        </View>
+        <Button
+          name="chapitre suivant"
+          onPress={() => {
+            navigation.goBack();
+          }}
+          style={{ width: width(90), alignSelf: "center" }}
+        />
+        <View style={{ height: 200, width: 1 }} />
       </Animated.ScrollView>
     </ScreenLayout>
   );

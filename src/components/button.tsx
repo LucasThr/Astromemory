@@ -21,10 +21,11 @@ export const Button = ({
 
   return (
     <Pressable
-      style={[
+      style={({ pressed }) => [
         {
           borderRadius: 10,
           backgroundColor: "#1A4379",
+          opacity: pressed ? 0.6 : 1,
           width: "100%",
         },
         style,
