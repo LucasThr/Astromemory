@@ -22,7 +22,7 @@
         "foregroundImage": "./assets/logo-astromemory.png",
         "backgroundColor": "#041D34"
       },
-      "versionCode": 2,
+      "versionCode": 3,
       "package": "com.lucasthr.Astromemory"
     },
     "web": {
