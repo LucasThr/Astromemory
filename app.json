@@ -4,7 +4,7 @@
     "slug": "Astromemory",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo-astromemory.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
@@ -19,8 +19,8 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/logo-astromemory.png",
+        "backgroundColor": "#041D34"
       },
       "versionCode": 2,
       "package": "com.lucasthr.Astromemory"
