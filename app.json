@@ -7,9 +7,9 @@
     "icon": "./assets/logo-astromemory.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/logo-astromemory.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#041D34"
     },
     "assetBundlePatterns": [
       "**/*"
