@@ -2,7 +2,7 @@
   "expo": {
     "name": "Astromemory",
     "slug": "Astromemory",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/logo-astromemory.png",
     "userInterfaceStyle": "light",
@@ -16,14 +16,15 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.lucasthr.Astromemory"
+      "bundleIdentifier": "com.lucasthr.Astromemory",
+      "buildNumber": "2"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/logo-astromemory.png",
         "backgroundColor": "#041D34"
       },
-      "versionCode": 3,
+      "versionCode": 4,
       "package": "com.lucasthr.Astromemory"
     },
     "web": {
