@@ -2,12 +2,11 @@ import { View, Text, Image } from "react-native";
 import React, { useEffect } from "react";
 import { ScreenLayout } from "../../layouts/screen.layout";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { roomService } from "../../services/room.service";
 import { userService } from "../../services/user.service";
 import { Button } from "../../components/button";
 import { mainstyles } from "../../assets/style/style";
 import { images } from "../../assets/img";
-import { Results } from "./components/results";
+import { Results } from "../multiplayers/components/results";
 import { Database } from "../../interfaces/database";
 
 type Props = {};
@@ -19,26 +18,9 @@ export type TRoomUsers = TRoomUser & {
 
 export type TUser = Database["public"]["Tables"]["users"]["Row"];
 
-const ResultMulti = (props: Props) => {
+const ResultSolo = (props: Props) => {
   const route = useRoute();
   const navigation = useNavigation();
-  const [users, setUsers] = React.useState([]);
-  const getResultsFromRoom = async (room_id: number) => {
-    const { data, error } = await userService.getAllFromRoom(room_id);
-    if (error || !data) {
-      console.log("error", error);
-      return;
-    }
-
-    let sorted = data.sort((a, b) => {
-      return b.score - a.score;
-    });
-    setUsers(sorted);
-  };
-
-  useEffect(() => {
-    getResultsFromRoom(route.params.room.id);
-  }, []);
 
   return (
     <ScreenLayout>
@@ -59,7 +41,7 @@ const ResultMulti = (props: Props) => {
             marginVertical: 12,
           }}
         >
-          {users[0]?.users?.name}
+          {route.params?.username}
         </Text>
         <Text
           style={{
@@ -68,10 +50,9 @@ const ResultMulti = (props: Props) => {
             fontWeight: "bold",
           }}
         >
-          {users[0]?.score}
+          {route.params?.score}
         </Text>
       </View>
-      <Results users={users} />
       <Button
         name="Retour au menu"
         onPress={() => navigation.navigate("Home")}
@@ -81,4 +62,4 @@ const ResultMulti = (props: Props) => {
   );
 };
 
-export default ResultMulti;
+export default ResultSolo;

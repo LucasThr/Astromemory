@@ -78,28 +78,6 @@ export const Create = () => {
                 color: "white",
               }}
             >
-              Thème abordé
-            </Text>
-          </View>
-          <View
-            style={[
-              style.block,
-              {
-                backgroundColor: "#303747",
-                borderRadius: 10,
-                borderColor: "#818585",
-                borderWidth: 1,
-              },
-            ]}
-          >
-            <Text
-              style={{
-                fontSize: 24,
-                fontWeight: "bold",
-                marginBottom: 20,
-                color: "white",
-              }}
-            >
               Nombre de questions
             </Text>
             <View style={{ flexDirection: "row" }}>

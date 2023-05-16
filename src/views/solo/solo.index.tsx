@@ -12,6 +12,7 @@ import { useNavigation } from "@react-navigation/native";
 import { userService } from "../../services/user.service";
 import { log } from "react-native-reanimated";
 import Slider from "@react-native-community/slider";
+import { questionService } from "../../services/question.service";
 
 export const Solo = () => {
   const games = [1, 2, 3, 4];
@@ -19,18 +20,22 @@ export const Solo = () => {
 
   const [username, setUsername] = useState("");
   const [numberOfQuestions, setNumberOfQuestions] = useState(7);
-  const [themes, setThemes] = useState([]);
   const [error, setError] = useState("");
   const createRoom = async () => {
     setError("");
     if (!username) return setError("Veuillez renseigner un pseudo");
-    navigation.navigate("QuestionsSolo", { questions_list: [{ iji: "iji" }] });
+    const questions = await questionService.getArrayOfQuestions(
+      numberOfQuestions
+    );
+    navigation.navigate("QuestionsSolo", {
+      questions_list: questions.data,
+      username: username,
+    });
   };
 
   return (
     <ScreenLayout>
       <Header />
-
       <View style={{ flex: 1, justifyContent: "center" }}>
         <Text
           style={[
@@ -62,28 +67,6 @@ export const Solo = () => {
                 color: "white",
               }}
             >
-              Thème abordé
-            </Text>
-          </View>
-          <View
-            style={[
-              style.block,
-              {
-                backgroundColor: "#303747",
-                borderRadius: 10,
-                borderColor: "#818585",
-                borderWidth: 1,
-              },
-            ]}
-          >
-            <Text
-              style={{
-                fontSize: 24,
-                fontWeight: "bold",
-                marginBottom: 20,
-                color: "white",
-              }}
-            >
               Nombre de questions
             </Text>
             <View style={{ flexDirection: "row" }}>
@@ -93,9 +76,12 @@ export const Solo = () => {
                   borderWidth: 1,
                   paddingHorizontal: 10,
                   paddingVertical: 5,
+                  borderColor: "white",
                 }}
               >
-                <Text style={{ fontSize: 24, fontWeight: "bold" }}>
+                <Text
+                  style={{ fontSize: 24, color: "white", fontWeight: "bold" }}
+                >
                   {numberOfQuestions}
                 </Text>
               </View>

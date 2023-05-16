@@ -16,7 +16,7 @@ export const QuestionsSolo = ({
   route: any;
   navigation: any;
 }) => {
-  const { questions_list } = route.params;
+  const { questions_list, username } = route.params;
 
   const [question, setQuestion] = useState<string | undefined>(undefined);
   const [stepQuestion, setStepQuestion] = useState(0);
@@ -52,20 +52,17 @@ export const QuestionsSolo = ({
 
   const validateResponse = async (response: Answer) => {
     setReveal(true);
-    console.log("stopTime", timerCount);
     let timeToScore = (timerCount / 200) * 1000;
-    // console.log("timeFix", timeToScore);
     if (response.isRight) {
-      console.log("Bonne réponse");
       setScore((score) => score + 100 + timeToScore);
-      const addPoints = await roomService.addPoints(room_user.id, score + 1000);
-      if (addPoints.error) setError("Erreur lors de l'ajout des points");
+      // const addPoints = await roomService.addPoints(room_user.id, score + 1000);
+      // if (addPoints.error) setError("Erreur lors de l'ajout des points");
     } else {
       console.log("Mauvaise réponse");
     }
 
     if (stepQuestion >= questions_list.length - 1) {
-      navigation.navigate("ResultMulti", { score });
+      navigation.navigate("ResultSolo", { score, username });
       return;
     }
     console.log("score", score);
@@ -118,7 +115,6 @@ export const QuestionsSolo = ({
               key={stepQuestion}
               stop={reveal}
               onFinish={() => {
-                console.log("reveal", reveal);
                 if (!reveal) validateResponse({ isRight: false });
               }}
             />

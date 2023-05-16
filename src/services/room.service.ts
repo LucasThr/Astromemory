@@ -1,4 +1,5 @@
 import { supabase } from "../libs/supabase";
+import { questionService } from "./question.service";
 
 const create = async (
   user_id: number,
@@ -6,7 +7,8 @@ const create = async (
   status: string,
   questions_list: number[]
 ) => {
-  const questions = [1, 2, 3, 4, 5];
+  const questions = await questionService.getArrayOfQuestions(number_questions);
+  if (questions.error) return { data: null, error: questions.error };
 
   const { data, error } = await supabase
     .from("rooms")
@@ -14,7 +16,7 @@ const create = async (
       {
         number_questions: number_questions,
         status: status,
-        questions_list: questions,
+        questions_list: questions.data,
       },
     ])
     .select()

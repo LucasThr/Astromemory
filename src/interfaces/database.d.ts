@@ -34,7 +34,7 @@ export interface Database {
           id: number;
           owner: boolean | null;
           room_id: number | null;
-          score: number | null;
+          score: number;
           user_id: number | null;
         };
         Insert: {

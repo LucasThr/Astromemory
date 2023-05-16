@@ -14,6 +14,7 @@ import { Create } from "../views/multiplayers/create.room";
 import ResultMulti from "../views/multiplayers/result.multi";
 import { Questions } from "../views/multiplayers/questions.multi";
 import { QuestionsSolo } from "../views/solo/questions.solo";
+import ResultSolo from "../views/solo/result.solo";
 
 export const Router = () => {
   const Stack = createNativeStackNavigator();
@@ -65,6 +66,12 @@ export const Router = () => {
           options={{ headerShown: false }}
           name="ResultMulti"
           component={ResultMulti}
+        />
+
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="ResultSolo"
+          component={ResultSolo}
         />
         <Stack.Screen
           options={{ headerShown: false }}
