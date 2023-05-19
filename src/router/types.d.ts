@@ -7,7 +7,7 @@ export type { NativeStackScreenProps } from "@react-navigation/native-stack";
 export type CommonNavigatorParams = {
   Home: undefined;
   Planets: undefined;
-  PlanetPage: undefined;
+  PlanetPage: { id: number };
   Lessons: undefined;
   Constellations: undefined;
   ConstellationPage: undefined;

@@ -10,7 +10,7 @@ import { useDimensions } from "../../../../hooks/useDimensions";
 import { images } from "../../../../assets/img";
 
 type Props = {
-  planet_images: ImageSourcePropType[];
+  planet_images: string[] | null;
 };
 
 const PlanetImages = ({ planet_images }: Props) => {
@@ -40,10 +40,10 @@ const PlanetImages = ({ planet_images }: Props) => {
           gap: 16,
         }}
       >
-        {planet_images?.map((image) => {
-          console.log("image", image);
+        {planet_images?.map((image: string) => {
           return (
             <Image
+              // @ts-ignore
               source={images[image]}
               style={{
                 flex: 1,

@@ -11,7 +11,7 @@ import { useDimensions } from "../../../../hooks/useDimensions";
 
 type Props = {
   translationY: SharedValue<number>;
-  distance: string;
+  distance: string | null;
 };
 
 const DistancePlanet = ({ translationY, distance }: Props) => {

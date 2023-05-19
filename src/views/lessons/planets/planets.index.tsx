@@ -17,9 +17,10 @@ import { ScreenLayout } from "../../../layouts/screen.layout";
 import { images } from "../../../assets/img";
 import { planetService } from "../../../services/planet.service";
 import { useEffect, useState } from "react";
+import { IPlanet } from "../../../interfaces/types";
 
 export const Planets = () => {
-  const [planets, setPlanets] = useState(undefined);
+  const [planets, setPlanets] = useState<IPlanet[] | []>([]);
   const translateX = useSharedValue(0);
   const { width } = useDimensions();
   const scrollHandler = useAnimatedScrollHandler((event) => {
@@ -28,6 +29,7 @@ export const Planets = () => {
 
   const getPlanets = async () => {
     const planetsData = await planetService.getAll();
+    if (!planetsData) return console.log("error");
     setPlanets(planetsData);
   };
 
@@ -50,9 +52,9 @@ export const Planets = () => {
           pagingEnabled={true}
           snapToAlignment="center" // Snap to the center
         >
-          {planets ? (
+          {planets?.length > 0 ? (
             <>
-              {planets?.map((planet: number[], index: number) => (
+              {planets?.map((planet: IPlanet, index: number) => (
                 <PlanetCard
                   key={index.toString()}
                   index={index}

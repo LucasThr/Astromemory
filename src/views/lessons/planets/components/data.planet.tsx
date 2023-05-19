@@ -5,7 +5,7 @@ import Icon from "../../../../components/icon";
 
 type Props = {
   title: string;
-  data: string;
+  data: string | null;
   iconName: string;
 };
 

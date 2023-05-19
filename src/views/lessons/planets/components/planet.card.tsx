@@ -2,20 +2,17 @@ import { View, Image, Dimensions, Pressable, StyleSheet } from "react-native";
 import React from "react";
 import { useDimensions } from "../../../../hooks/useDimensions";
 import { useNavigation } from "@react-navigation/native";
-import Animated, {
-  Extrapolate,
-  interpolate,
-  useAnimatedStyle,
-} from "react-native-reanimated";
+import Animated from "react-native-reanimated";
 import Icon from "../../../../components/icon";
-import MainText from "../../../../components/text";
 import Text from "../../../../components/text";
 import { images } from "../../../../assets/img";
+import { IPlanet } from "../../../../interfaces/types";
+import { NavigationProp } from "../../../../router/types";
 
-type Props = { planet: Object };
+type Props = { planet: IPlanet; index: number };
 
 const PlanetCard = ({ planet, index }: Props) => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp>();
   const { width, height } = useDimensions();
 
   return (
@@ -40,6 +37,7 @@ const PlanetCard = ({ planet, index }: Props) => {
           height: width(30),
         }}
         resizeMode="contain"
+        // @ts-ignore
         source={images[planet.image]}
       />
 

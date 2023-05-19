@@ -17,38 +17,12 @@ import DistancePlanet from "./components/distance.planet";
 import { images } from "../../../assets/img";
 import { Button } from "../../../components/button";
 import { planetService } from "../../../services/planet.service";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import { IPlanet } from "../../../interfaces/types";
+import { CommonNavigatorParams } from "../../../router/types";
 
 type Props = {};
 
-// const planet = {
-//   id: 1,
-//   name: "Mercurio",
-//   description: "La planète la plus proche du soleil",
-//   image: require("../../../assets/img/mercury.png"),
-//   distance: "57 909 227 km",
-//   radius: "2 439,7 km",
-//   rotation: "58j 15h 30m",
-//   revolution: "87j 23h 14m",
-//   temperature: "430°C",
-//   gravity: "3,7 m/s²",
-//   satellites: "0",
-//   composition: "Fer, Nickel",
-//   atmosphere: "Aucune",
-//   discovery: "Antiquité",
-//   nameDiscoverer: "Inconnu",
-//   mass: "3,285 × 10^23 kg",
-//   volume: "6,083 × 10^10 km³",
-//   density: "5,427 g/cm³",
-//   surface: "7,48 × 10^7 km²",
-//   pressure: "0,000000 Pa",
-//   escape: "15,3 km/s",
-//   orbit: "57 909 227 km",
-//   details: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, vel provident? Inventore repudiandae ducimus deleniti dolorum nulla laudantium atque quod sit nam repellat voluptatem voluptatibus  voluptates excepturi cumque dolor fugiat enim quam error, ea,  suscipit eum? Fugiat iusto quas esse excepturi vel magni in,  quibusdam, pariatur ab, dolorum minus iste!
-
-// Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, vel provident? Inventore repudiandae ducimus deleniti dolorum nulla laudantium atque quod sit nam repellat voluptatem voluptatibus  voluptates excepturi cumque dolor fugiat enim quam error, ea,  suscipit eum? Fugiat iusto quas esse excepturi vel magni in,  quibusdam, pariatur ab, dolorum minus iste!`,
-//   images: [images.background_solo, images.background_multi],
-// };
 const PlanetPage = (props: Props) => {
   const { width, height } = useDimensions();
   const translationY = useSharedValue(0);
@@ -56,8 +30,8 @@ const PlanetPage = (props: Props) => {
   const MAX_WIDTH = width(100);
   const MAX_HEIGHT = height(100);
 
-  const { params } = useRoute();
-  const [planet, setPlanet] = useState(undefined);
+  const { params } = useRoute<RouteProp<CommonNavigatorParams, "PlanetPage">>();
+  const [planet, setPlanet] = useState<IPlanet | undefined>(undefined);
 
   const cubeStyle = useAnimatedStyle(() => {
     const widthAnimated = interpolate(
@@ -156,6 +130,7 @@ const PlanetPage = (props: Props) => {
         <HeaderLesson />
         <Image
           style={{ position: "absolute", right: 10, marginTop: 80 }}
+          // @ts-ignore
           source={images[planet.image]}
         />
         <Text
