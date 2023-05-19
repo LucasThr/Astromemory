@@ -57,14 +57,14 @@ export interface Database {
           code: number;
           id: number;
           number_questions: number | null;
-          questions_list: number[] | null;
+          questions_list: number[];
           status: string | null;
         };
         Insert: {
           code?: number;
           id?: number;
           number_questions?: number | null;
-          questions_list?: number[] | null;
+          questions_list?: number[];
           status?: string | null;
         };
         Update: {

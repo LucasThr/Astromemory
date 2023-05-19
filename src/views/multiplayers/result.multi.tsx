@@ -1,7 +1,7 @@
 import { View, Text, Image } from "react-native";
 import React, { useEffect } from "react";
 import { ScreenLayout } from "../../layouts/screen.layout";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { roomService } from "../../services/room.service";
 import { userService } from "../../services/user.service";
 import { Button } from "../../components/button";
@@ -9,10 +9,11 @@ import { mainstyles } from "../../assets/style/style";
 import { images } from "../../assets/img";
 import { Results } from "./components/results";
 import { Database } from "../../interfaces/database";
+import { TRoomUser } from "../solo/result.solo";
+import { CommonNavigatorParams, NavigationProp } from "../../router/types";
 
 type Props = {};
 
-export type TRoomUser = Database["public"]["Tables"]["room_user"]["Row"];
 export type TRoomUsers = TRoomUser & {
   users: Database["public"]["Tables"]["users"]["Row"];
 };
@@ -20,9 +21,9 @@ export type TRoomUsers = TRoomUser & {
 export type TUser = Database["public"]["Tables"]["users"]["Row"];
 
 const ResultMulti = (props: Props) => {
-  const route = useRoute();
-  const navigation = useNavigation();
-  const [users, setUsers] = React.useState([]);
+  const route = useRoute<RouteProp<CommonNavigatorParams, "ResultMulti">>();
+  const navigation = useNavigation<NavigationProp>();
+  const [users, setUsers] = React.useState<TRoomUsers[]>([]);
   const getResultsFromRoom = async (room_id: number) => {
     const { data, error } = await userService.getAllFromRoom(room_id);
     if (error || !data) {

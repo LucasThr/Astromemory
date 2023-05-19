@@ -10,9 +10,10 @@ import { useNavigation } from "@react-navigation/native";
 import { userService } from "../../services/user.service";
 import { log } from "react-native-reanimated";
 import Slider from "@react-native-community/slider";
+import { NavigationProp } from "../../router/types";
 
 export const Create = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp>();
 
   const [username, setUsername] = useState("");
   const [numberOfQuestions, setNumberOfQuestions] = useState(7);
@@ -30,12 +31,14 @@ export const Create = () => {
       "waiting",
       themes
     );
-    let room_id = roomCreated?.data?.id;
     console.log("roomCreated?.error", roomCreated?.error);
-    if (roomCreated?.error) return setError("Une erreur est survenue");
+    if (roomCreated?.error || roomCreated.data === null)
+      return setError("Une erreur est survenue");
+    let room_id = roomCreated?.data?.id;
 
     let userRoom = await roomService.addUserToRoom(user_id, room_id, true);
-    if (userRoom.error) return setError("Une erreur est survenue");
+    if (userRoom.error || userRoom.data === null)
+      return setError("Une erreur est survenue");
 
     navigation.navigate("Wait", {
       room_user: userRoom.data,

@@ -1,13 +1,14 @@
 import { View, Text, Image } from "react-native";
 import React, { useEffect } from "react";
 import { ScreenLayout } from "../../layouts/screen.layout";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { userService } from "../../services/user.service";
 import { Button } from "../../components/button";
 import { mainstyles } from "../../assets/style/style";
 import { images } from "../../assets/img";
 import { Results } from "../multiplayers/components/results";
 import { Database } from "../../interfaces/database";
+import { CommonNavigatorParams, NavigationProp } from "../../router/types";
 
 type Props = {};
 
@@ -19,8 +20,8 @@ export type TRoomUsers = TRoomUser & {
 export type TUser = Database["public"]["Tables"]["users"]["Row"];
 
 const ResultSolo = (props: Props) => {
-  const route = useRoute();
-  const navigation = useNavigation();
+  const route = useRoute<RouteProp<CommonNavigatorParams, "ResultSolo">>();
+  const navigation = useNavigation<NavigationProp>();
 
   return (
     <ScreenLayout>

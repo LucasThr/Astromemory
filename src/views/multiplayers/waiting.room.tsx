@@ -9,23 +9,24 @@ import { supabase } from "../../libs/supabase";
 import { userService } from "../../services/user.service";
 import { roomService } from "../../services/room.service";
 import { Button } from "../../components/button";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import { CommonNavigatorParams, NavigationProp } from "../../router/types";
+import { TRoomUsers } from "./result.multi";
 
 let subscription: any;
-export const Wait = ({
-  route,
-  navigation,
-}: {
-  route: any;
-  navigation: any;
-}) => {
+export const Wait = () => {
+  const [users, setUsers] = useState<TRoomUsers[] | []>([]);
+  const route = useRoute<RouteProp<CommonNavigatorParams, "Wait">>();
+  const navigation = useNavigation<NavigationProp>();
   const { room, room_user, isOwner } = route.params;
-  const [users, setUsers] = useState<any>([]);
 
   const fetchUsers = async (room_id: number) => {
-    let users = await userService.getAllFromRoom(room_id);
-
-    console.log("users :", users);
-    setUsers(users?.data);
+    let { data: users, error } = await userService.getAllFromRoom(room_id);
+    if (error || !users) {
+      console.log("error", error);
+      return;
+    }
+    setUsers(users);
   };
 
   useEffect(() => {

@@ -10,9 +10,15 @@ import { Header } from "../../components/header";
 import LessonCard from "./lesson.card";
 import { Infos } from "../../components/infos";
 
-type Props = {};
+export interface Lesson {
+  id: number;
+  image: string;
+  name: string;
+  description: string;
+  link: "Constellations" | "Planets";
+}
 
-const Lessons = (props: Props) => {
+const Lessons = () => {
   const translateX = useSharedValue(0);
   const { width } = useDimensions();
   const scrollHandler = useAnimatedScrollHandler((event) => {
@@ -36,9 +42,6 @@ const Lessons = (props: Props) => {
       link: "Constellations",
     },
     // { id: 3, name: "Etoiles", image: "", link: "" },
-    // { id: 4, name: "Galaxies", image: "", link: "" },
-    // { id: 5, name: "Satellites", image: "", link: "" },
-    // { id: 6, name: "Univers", image: "", link: "" },
   ];
 
   return (
@@ -57,31 +60,10 @@ const Lessons = (props: Props) => {
           scrollEventThrottle={16}
           horizontal={true}
           pagingEnabled={true}
-          // snapToInterval={width(80) + 10} // Calculate the size for a card including marginLeft and marginRight
           snapToAlignment="center" // Snap to the center
-          // contentInset={{
-          //   // iOS ONLY
-          //   top: 0,
-          //   left: SPACING_FOR_CARD_INSET, // Left spacing for the very first card
-          //   bottom: 0,
-          //   right: SPACING_FOR_CARD_INSET, // Right spacing for the very last card
-          // }}
-          // contentContainerStyle={{
-          //   // contentInset alternative for Android
-          //   paddingHorizontal:
-          //     Platform.OS === "android" ? SPACING_FOR_CARD_INSET : 0, // Horizontal spacing before and after the ScrollView
-          // }}
         >
-          {lessons.map((lesson: Object, index: number) => {
-            return (
-              <LessonCard
-                lesson={lesson}
-                translateX={translateX}
-                key={index.toString()}
-                index={index}
-                maxIndex={lessons.length - 1}
-              />
-            );
+          {lessons.map((lesson: Lesson) => {
+            return <LessonCard lesson={lesson} key={lesson.id} />;
           })}
         </Animated.ScrollView>
       </View>

@@ -5,18 +5,15 @@ import { Bloc } from "./components/bloc";
 import { useEffect, useState } from "react";
 import { questionService } from "../../services/question.service";
 import { shuffle } from "../../helpers/game.helper";
-import { useRoute } from "@react-navigation/native";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import Timer from "../../components/timer";
 import { roomService } from "../../services/room.service";
 import { Answer } from "../../interfaces/questions";
+import { CommonNavigatorParams, NavigationProp } from "../../router/types";
 
-export const Questions = ({
-  route,
-  navigation,
-}: {
-  route: any;
-  navigation: any;
-}) => {
+export const Questions = () => {
+  const route = useRoute<RouteProp<CommonNavigatorParams, "Questions">>();
+  const navigation = useNavigation<NavigationProp>();
   const { room, room_user } = route.params;
 
   const [question, setQuestion] = useState<string | undefined>(undefined);

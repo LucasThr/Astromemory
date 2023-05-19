@@ -17,16 +17,15 @@ import Animated, {
 } from "react-native-reanimated";
 import { Button } from "../../components/button";
 import { FontWeight } from "@shopify/react-native-skia";
+import { NavigationProp } from "../../router/types";
+import { Lesson } from "./lessons.index";
 
 type Props = {
-  translateX: Animated.SharedValue<number>;
-  index: number;
-  maxIndex: number;
-  lesson: Object;
+  lesson: Lesson;
 };
 
-const LessonCard = ({ translateX, index, maxIndex, lesson }: Props) => {
-  const navigation = useNavigation();
+const LessonCard = ({ lesson }: Props) => {
+  const navigation = useNavigation<NavigationProp>();
   const { width, height } = useDimensions();
 
   return (
@@ -39,10 +38,7 @@ const LessonCard = ({ translateX, index, maxIndex, lesson }: Props) => {
             alignItems: "center",
             width: width(80),
             alignSelf: "center",
-            // marginLeft: index === 0 ? width(10) : 0,
-            // marginRight: index === maxIndex ? width(10) : 0,
           },
-          // rStyle,
         ]}
       >
         <Image

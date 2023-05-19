@@ -15,9 +15,10 @@ import ResultMulti from "../views/multiplayers/result.multi";
 import { Questions } from "../views/multiplayers/questions.multi";
 import { QuestionsSolo } from "../views/solo/questions.solo";
 import ResultSolo from "../views/solo/result.solo";
+import { CommonNavigatorParams } from "./types";
 
 export const Router = () => {
-  const Stack = createNativeStackNavigator();
+  const Stack = createNativeStackNavigator<CommonNavigatorParams>();
 
   return (
     <NavigationContainer>

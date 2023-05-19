@@ -1,4 +1,5 @@
 import { Pressable, Text, View } from "react-native";
+import { Answer } from "../../../interfaces/questions";
 
 export const Bloc = ({
   reveal,
@@ -6,8 +7,8 @@ export const Bloc = ({
   data,
 }: {
   reveal: boolean;
-  onPress: any;
-  data: Object;
+  onPress: () => void;
+  data: Answer;
 }) => {
   return (
     <Pressable

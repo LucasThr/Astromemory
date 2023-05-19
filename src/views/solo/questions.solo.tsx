@@ -8,14 +8,12 @@ import { shuffle } from "../../helpers/game.helper";
 import Timer from "../../components/timer";
 import { roomService } from "../../services/room.service";
 import { Answer } from "../../interfaces/questions";
+import { CommonNavigatorParams, NavigationProp } from "../../router/types";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 
-export const QuestionsSolo = ({
-  route,
-  navigation,
-}: {
-  route: any;
-  navigation: any;
-}) => {
+export const QuestionsSolo = () => {
+  const route = useRoute<RouteProp<CommonNavigatorParams, "QuestionsSolo">>();
+  const navigation = useNavigation<NavigationProp>();
   const { questions_list, username } = route.params;
 
   const [question, setQuestion] = useState<string | undefined>(undefined);

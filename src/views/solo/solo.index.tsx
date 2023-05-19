@@ -13,10 +13,11 @@ import { userService } from "../../services/user.service";
 import { log } from "react-native-reanimated";
 import Slider from "@react-native-community/slider";
 import { questionService } from "../../services/question.service";
+import { NavigationProp } from "../../router/types";
 
 export const Solo = () => {
   const games = [1, 2, 3, 4];
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp>();
 
   const [username, setUsername] = useState("");
   const [numberOfQuestions, setNumberOfQuestions] = useState(7);
@@ -27,6 +28,10 @@ export const Solo = () => {
     const questions = await questionService.getArrayOfQuestions(
       numberOfQuestions
     );
+
+    if (questions.error || !questions.data)
+      return setError("Une erreur est survenue");
+
     navigation.navigate("QuestionsSolo", {
       questions_list: questions.data,
       username: username,

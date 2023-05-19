@@ -1,8 +1,8 @@
 import { Image, Text, View } from "react-native";
 import { images } from "../../../assets/img";
+import { TRoomUsers } from "../result.multi";
 
-export const List = ({ users }) => {
-  
+export const List = ({ users }: { users: TRoomUsers[] }) => {
   return (
     <>
       <View
