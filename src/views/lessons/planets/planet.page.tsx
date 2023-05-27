@@ -177,7 +177,7 @@ const PlanetPage = (props: Props) => {
                 color: "white",
               }}
             >
-              Earth
+              {planet.name}
             </Text>
             <Text style={{ fontSize: 16, color: "white" }}>
               {planet.description}

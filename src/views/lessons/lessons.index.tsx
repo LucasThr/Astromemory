@@ -34,13 +34,13 @@ const Lessons = () => {
         "Découvrez différentes planètes avec chacune leur spécifité en commençant par notre planète : La Terre",
       link: "Planets",
     },
-    {
-      id: 2,
-      name: "Constellations",
-      image: "",
-      description: "",
-      link: "Constellations",
-    },
+    // {
+    //   id: 2,
+    //   name: "Constellations",
+    //   image: "",
+    //   description: "",
+    //   link: "Constellations",
+    // },
     // { id: 3, name: "Etoiles", image: "", link: "" },
   ];
 
@@ -62,9 +62,9 @@ const Lessons = () => {
           pagingEnabled={true}
           snapToAlignment="center" // Snap to the center
         >
-          {lessons.map((lesson: Lesson) => {
-            return <LessonCard lesson={lesson} key={lesson.id} />;
-          })}
+          {lessons.map((lesson: Lesson) => (
+            <LessonCard lesson={lesson} key={lesson.id} />
+          ))}
         </Animated.ScrollView>
       </View>
       <Infos style={{ width: width(80), alignSelf: "center" }} />

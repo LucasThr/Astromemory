@@ -1,8 +1,10 @@
 import {
+  Keyboard,
   KeyboardAvoidingView,
   Platform,
-  ScrollView,
+  Pressable,
   Text,
+  TouchableWithoutFeedback,
   View,
 } from "react-native";
 import { ScreenLayout } from "../../layouts/screen.layout";
@@ -16,6 +18,7 @@ import { useNavigation } from "@react-navigation/native";
 import { roomService } from "../../services/room.service";
 import { DismissKeyboard } from "../../layouts/keyboard.layout";
 import { NavigationProp } from "../../router/types";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export const Join = () => {
   const navigation = useNavigation<NavigationProp>();
@@ -50,45 +53,62 @@ export const Join = () => {
   };
 
   return (
-    <ScreenLayout enableDismiss>
-      <Header />
-      <View
-        style={{
-          flex: 1,
-          justifyContent: "center",
-        }}
-      >
-        <Text
-          style={[
-            mainstyles.title,
-            mainstyles.textcenter,
-            { marginBottom: 40 },
-          ]}
+    <ScreenLayout>
+      <SafeAreaView style={{ flex: 1 }}>
+        <Pressable
+          style={{ flex: 1 }}
+          onPress={() => {
+            Keyboard.dismiss();
+          }}
         >
-          Rejoindre un salon
-        </Text>
-        <KeyboardAvoidingView
-          behavior={Platform.OS === "ios" ? "padding" : "height"}
-          style={{ gap: 32 }}
-        >
-          <Input
-            title="Pseudo"
-            placeholder="Mastu"
-            onChange={setUsername}
-            value={username}
-          />
+          <>
+            <Header />
+            <View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+              }}
+            >
+              <Text
+                style={[
+                  mainstyles.title,
+                  mainstyles.textcenter,
+                  { marginBottom: 40 },
+                ]}
+              >
+                Rejoindre un salon
+              </Text>
+              <KeyboardAvoidingView
+                behavior={Platform.OS === "ios" ? "padding" : "height"}
+                style={{ gap: 32 }}
+              >
+                <Input
+                  title="Pseudo"
+                  placeholder="Mastu"
+                  onChange={setUsername}
+                  value={username}
+                />
 
-          <Input
-            keyboardType="numeric"
-            onChange={setCode}
-            value={code}
-            title="Code de la session"
-            placeholder="123456"
-          />
-          <Button style={{ marginTop: 20 }} name="Valider" onPress={joinRoom} />
-          <Text style={[mainstyles.textcenter, { color: "red" }]}>{error}</Text>
-        </KeyboardAvoidingView>
-      </View>
+                <Input
+                  keyboardType="numeric"
+                  onChange={setCode}
+                  value={code}
+                  title="Code de la session"
+                  placeholder="123456"
+                />
+                <Button
+                  style={{ marginTop: 20 }}
+                  name="Valider"
+                  onPress={joinRoom}
+                />
+                <Text style={[mainstyles.textcenter, { color: "red" }]}>
+                  {error}
+                </Text>
+              </KeyboardAvoidingView>
+            </View>
+          </>
+        </Pressable>
+      </SafeAreaView>
     </ScreenLayout>
   );
 };

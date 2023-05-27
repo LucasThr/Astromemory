@@ -14,7 +14,6 @@ import Animated, {
 } from "react-native-reanimated";
 import { Header } from "../../../components/header";
 import { ScreenLayout } from "../../../layouts/screen.layout";
-import { images } from "../../../assets/img";
 import { planetService } from "../../../services/planet.service";
 import { useEffect, useState } from "react";
 import { IPlanet } from "../../../interfaces/types";

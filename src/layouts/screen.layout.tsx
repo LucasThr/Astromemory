@@ -23,12 +23,10 @@ export const ScreenLayout = ({
   children,
   noPadding,
   style,
-  enableDismiss,
 }: {
   children: JSX.Element | JSX.Element[];
   noPadding?: boolean;
   style?: StyleProp<ViewStyle>;
-  enableDismiss?: boolean;
 }) => {
   const inset = useSafeAreaInsets();
   const { width, height } = useDimensions();
