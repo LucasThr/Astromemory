@@ -5,7 +5,7 @@ import { TRoomUsers } from "../result.multi";
 export const Results = ({ users }: { users: TRoomUsers[] }): JSX.Element => {
   return (
     <>
-      {users?.length > 0 ? (
+      {users?.length > 0 && (
         <>
           {users?.map((user: TRoomUsers) => (
             <View
@@ -44,8 +44,6 @@ export const Results = ({ users }: { users: TRoomUsers[] }): JSX.Element => {
             </View>
           ))}
         </>
-      ) : (
-        <ActivityIndicator size="large" color="#fff" />
       )}
     </>
   );

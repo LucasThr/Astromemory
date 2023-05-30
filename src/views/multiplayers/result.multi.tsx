@@ -72,7 +72,7 @@ const ResultMulti = (props: Props) => {
           {users[0]?.score}
         </Text>
       </View>
-      <Results users={users} />
+      <Results users={users.shift()} />
       <Button
         name="Retour au menu"
         onPress={() => navigation.navigate("Home")}
