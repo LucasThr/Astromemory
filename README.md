@@ -9,4 +9,5 @@ C'est une application permettant d'apprendre l'astronomie et de pouvoir jouer à
 L'application est disponible sur les différents stores
 
 Apple Store : [Astromemory](https://play.google.com/store/apps/details?id=com.lucasthr.Astromemory)
+
 Play Store : [Astromemory](https://apps.apple.com/us/app/astromemory/id6449087379)
