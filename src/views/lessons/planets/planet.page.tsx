@@ -129,9 +129,17 @@ const PlanetPage = (props: Props) => {
       >
         <HeaderLesson />
         <Image
-          style={{ position: "absolute", right: 10, marginTop: 80 }}
-          // @ts-ignore
-          source={images[planet.image]}
+          style={{
+            position: "absolute",
+            right: 10,
+            marginTop: 80,
+            width: 180,
+            height: 180,
+          }}
+          source={
+            // @ts-ignore
+            planet.image ? images[planet.image] : { uri: planet.url_image }
+          }
         />
         <Text
           style={{

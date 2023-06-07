@@ -3,7 +3,8 @@ import { supabase } from "../libs/supabase";
 const getAll = async () => {
   const { data, error } = await supabase
     .from("planets")
-    .select("id,name,description,image");
+    .select("id,name,description,image")
+    .order("id", { ascending: true });
 
   if (error) {
     console.log("error", error);

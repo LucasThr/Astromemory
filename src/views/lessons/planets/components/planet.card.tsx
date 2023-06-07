@@ -37,8 +37,10 @@ const PlanetCard = ({ planet, index }: Props) => {
           height: width(30),
         }}
         resizeMode="contain"
-        // @ts-ignore
-        source={images[planet.image]}
+        source={
+          // @ts-ignore
+          planet.image ? images[planet.image] : { uri: planet.url_image }
+        }
       />
 
       <Pressable
