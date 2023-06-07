@@ -10,6 +10,7 @@ import Timer from "../../components/timer";
 import { roomService } from "../../services/room.service";
 import { Answer } from "../../interfaces/questions";
 import { CommonNavigatorParams, NavigationProp } from "../../router/types";
+import { supabase } from "../../libs/supabase";
 
 export const Questions = () => {
   const route = useRoute<RouteProp<CommonNavigatorParams, "Questions">>();
@@ -24,6 +25,8 @@ export const Questions = () => {
   const [reveal, setReveal] = useState(false);
   const [score, setScore] = useState(0);
   const [timerCount, setTimer] = useState<number>(200);
+  const [locked, setLocked] = useState(false);
+
   const getQuestion = async (index: number) => {
     setLoading(true);
     let { data: dataQuestion, error } = await questionService.getOne(index);
@@ -61,19 +64,43 @@ export const Questions = () => {
     } else {
       console.log("Mauvaise réponse");
     }
-
-    if (stepQuestion >= room.questions_list.length - 1) {
-      navigation.navigate("ResultMulti", { room: room });
-      return;
-    }
-    console.log("score", score);
-    setTimer(200);
-    setTimeout(() => {
-      setReveal(false);
-      getQuestion(room.questions_list[stepQuestion + 1]);
-      setStepQuestion(stepQuestion + 1);
-    }, 1000);
+    if (!room_user.user_id) return;
+    await roomService.setUserToReady(
+      room.id,
+      room_user.user_id,
+      stepQuestion + 1
+    );
   };
+
+  useEffect(() => {
+    console.log("room.id", room.id);
+    supabase
+      .channel("public:rooms:id=eq." + room.id)
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: "rooms" },
+        (payload) => {
+          console.log("Change received! ROOM WRITE ANSWER");
+          if (payload?.new?.step == stepQuestion + 1) {
+            roomService.setUserToNotReady(room_user.user_id);
+            if (stepQuestion >= room.questions_list.length - 1) {
+              supabase.removeAllChannels();
+              navigation.navigate("ResultMulti", { room: room });
+              return;
+            }
+            setReveal(false);
+            setTimer(200);
+            setTimeout(() => {
+              getQuestion(room.questions_list[stepQuestion + 1]);
+              setStepQuestion((step) => step + 1);
+            }, 1000);
+          }
+        }
+      )
+      .subscribe(async (message) => {
+        console.log("message", message);
+      });
+  }, [stepQuestion]);
 
   const getTime = (time: number) => {
     setTimer(time);

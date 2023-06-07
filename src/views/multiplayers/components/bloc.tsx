@@ -13,18 +13,22 @@ export const Bloc = ({
   return (
     <Pressable
       onPress={onPress}
-      style={{
-        backgroundColor: !reveal
-          ? "#303747"
-          : data.isRight
-          ? "#029963"
-          : "#303747",
-        borderRadius: 10,
-        borderColor: "#818585",
-        borderWidth: !reveal ? 1 : data.isRight ? 0 : 1,
-        alignItems: "center",
-        paddingVertical: 28,
-      }}
+      disabled={reveal}
+      style={({ pressed }) => [
+        {
+          backgroundColor: !reveal
+            ? "#303747"
+            : data.isRight
+            ? "#029963"
+            : "#303747",
+          borderRadius: 10,
+          borderColor: "#818585",
+          borderWidth: !reveal ? 1 : data.isRight ? 0 : 1,
+          alignItems: "center",
+          paddingVertical: 28,
+          opacity: pressed ? 0.7 : 1,
+        },
+      ]}
     >
       <Text style={{ fontSize: 28, fontWeight: "bold", color: "white" }}>
         {data.answer}

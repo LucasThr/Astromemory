@@ -3,6 +3,7 @@ import { images } from "../../../assets/img";
 import { TRoomUsers } from "../result.multi";
 
 export const Results = ({ users }: { users: TRoomUsers[] }): JSX.Element => {
+  console.log("users", users);
   return (
     <>
       {users?.length > 0 && (

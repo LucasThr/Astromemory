@@ -58,6 +58,8 @@ export const Wait = () => {
             // supabase.removeAllChannels();
             // setIsLoading(false);*
             console.log("room", room);
+            console.log("room_user", room_user);
+            supabase.removeAllChannels();
             navigation.navigate("Questions", {
               room: room,
               room_user: room_user,
@@ -71,8 +73,8 @@ export const Wait = () => {
       });
 
     return () => {
-      // supabase.removeChannel("public:room_user:id=eq." + room.id);
-      // supabase.removeChannel("public:room:id=eq." + room.id);
+      supabase.removeChannel("public:room_user");
+      supabase.removeChannel("public:rooms");
     };
   }, []);
 

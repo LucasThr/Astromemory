@@ -33,23 +33,23 @@ export const ScreenLayout = ({
 
   const SIGNAL_COLOR = "#FFFFFF33";
 
-  const glowAnimation = () =>
-    useAnimatedStyle(() => ({
-      transform: [
-        {
-          scale: withRepeat(
-            withSequence(
-              withTiming(Math.random() * (5 - 2) + 2, {
-                duration: Math.random() * (3000 - 1200) + 1200,
-              }),
-              withTiming(1, { duration: 1000 })
-            ),
-            -1,
-            true
-          ),
-        },
-      ],
-    }));
+  // const glowAnimation = () =>
+  //   useAnimatedStyle(() => ({
+  //     transform: [
+  //       {
+  //         scale: withRepeat(
+  //           withSequence(
+  //             withTiming(Math.random() * (5 - 2) + 2, {
+  //               duration: Math.random() * (3000 - 1200) + 1200,
+  //             }),
+  //             withTiming(1, { duration: 1000 })
+  //           ),
+  //           -1,
+  //           true
+  //         ),
+  //       },
+  //     ],
+  //   }));
 
   return (
     <LinearGradient
@@ -139,7 +139,7 @@ export const ScreenLayout = ({
                       borderRadius: 999,
                       backgroundColor: "#FFFFFF26",
                     },
-                    star.isAnimated && glowAnimation(),
+                    // star.isAnimated && glowAnimation(),
                   ]}
                 />
               )}
